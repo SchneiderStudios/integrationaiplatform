@@ -868,6 +868,56 @@ setL(lang);
   <button class="tb-btn revoke" onclick="clearAccess()">✕ Clear access (test)</button>
   <button class="tb-btn" onclick="document.getElementById('test-bar').style.display='none'" style="opacity:.4">hide</button>
 </div>
+<script>
+const leadForm = document.getElementById('lead-form');
 
+if (leadForm) {
+  leadForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('lead-submit');
+
+    const payload = {
+      name: leadForm.name.value,
+      email: leadForm.email.value,
+      telegram: leadForm.telegram.value,
+      goal: leadForm.goal.value,
+      lang: localStorage.getItem('ss_lang') || 'de'
+    };
+
+    submitBtn.disabled = true;
+    status.textContent = payload.lang === 'ru' ? 'Отправка...' : 'Wird gesendet...';
+
+    try {
+      const res = await fetch('/.netlify/functions/send-to-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (!res.ok || !result.ok) {
+        throw new Error(result.error || 'Request failed');
+      }
+
+      localStorage.setItem('access', 'true');
+      status.textContent = payload.lang === 'ru'
+        ? 'Доступ открыт. Перенаправление...'
+        : 'Zugang freigeschaltet. Weiterleitung...';
+
+      setTimeout(() => {
+        window.location.href = 'kurs.html';
+      }, 700);
+
+    } catch (err) {
+      status.textContent = (payload.lang === 'ru' ? 'Ошибка: ' : 'Fehler: ') + err.message;
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}
+</script>
 </body>
 </html>
