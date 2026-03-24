@@ -68,9 +68,10 @@
 <body>
 
 <script>
-  const ref = document.referrer;
+  const params = new URLSearchParams(window.location.search);
+  const paid = params.get("paid");
 
-  if (!ref.includes("stripe.com")) {
+  if (paid !== "true") {
     document.body.innerHTML = "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px;'>Access denied</h2>";
   }
 </script>
