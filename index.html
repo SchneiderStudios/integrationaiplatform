@@ -595,9 +595,7 @@ let lang = localStorage.getItem('ss_lang')||'de';
 // It does NOT provide real content protection — a determined user can bypass it.
 // Replace with server-side session/token verification after payment integration.
 function hasAccess(){ return localStorage.getItem('access')==='true'; }
-function setAccess(){ localStorage.setItem('access','true'); updTestBar(); alert(lang==='de'?'✅ Zugang gewährt. Kurs-Links sind jetzt freigeschaltet.':'✅ Доступ предоставлен. Ссылки на курс разблокированы.'); render(); }
-function clearAccess(){ localStorage.removeItem('access'); updTestBar(); alert(lang==='de'?'🔒 Zugang entfernt.':'🔒 Доступ отозван.'); render(); }
-function updTestBar(){
+
   const bar=document.getElementById('test-bar');
   if(bar) bar.style.display=DEV_MODE?'flex':'none';
   const s=document.getElementById('tb-status');
