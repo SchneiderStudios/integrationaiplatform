@@ -65,7 +65,34 @@
 </head>
 
 <body>
+<body>
 
+<script>
+  const ref = document.referrer;
+
+  if (!ref.includes("stripe.com")) {
+    document.body.innerHTML = "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px;'>Access denied</h2>";
+  }
+</script>
+
+<div class="card">
+  <h1>✅ Zahlung erfolgreich</h1>
+
+  <p>
+    Dein Premium PDF ist bereit.<br>
+    Klicke unten zum Download.
+  </p>
+
+  <a href="/pdf/ki-prompt-guide.pdf" class="btn" download>
+    📥 PDF herunterladen
+  </a>
+
+  <div class="note">
+    SchneiderStudios · 2026
+  </div>
+</div>
+
+</body>
 <div class="card">
   <h1>✅ Zahlung erfolgreich</h1>
 
