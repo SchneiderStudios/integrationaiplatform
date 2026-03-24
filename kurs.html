@@ -371,7 +371,10 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);min-height:10
 // It does NOT provide real content protection — a determined user can bypass it.
 // Replace with server-side session/token verification after backend integration.
 (function(){
-  if(localStorage.getItem('access') !== 'true'){
+  const access = localStorage.getItem('access');
+  const email = localStorage.getItem('user_email');
+
+  if(access !== 'true' || !email){
     const lang = localStorage.getItem('ss_lang') || 'de';
     const isRu = lang === 'ru';
     document.body.innerHTML = `
