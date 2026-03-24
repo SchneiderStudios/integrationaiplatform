@@ -594,8 +594,10 @@ let lang = localStorage.getItem('ss_lang')||'de';
 // NOTE: localStorage 'access' is a temporary client-side placeholder.
 // It does NOT provide real content protection — a determined user can bypass it.
 // Replace with server-side session/token verification after payment integration.
-function hasAccess(){ return localStorage.getItem('access')==='true'; }
-
+function hasAccess(){
+  return localStorage.getItem('access')==='true' &&
+         localStorage.getItem('user_email');
+}
 // ── SIGNUP MODAL ──
 function buyCourse(){
   if(hasAccess()){ window.location.href = 'kurs.html'; return; }
