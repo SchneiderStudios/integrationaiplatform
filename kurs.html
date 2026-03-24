@@ -1227,6 +1227,21 @@ load();
 sL(lang);
 updStats();
 togM(0);
-</script>
+// ── USER EMAIL DISPLAY ──
+const userEmail = localStorage.getItem('user_email');
+
+if(userEmail){
+  const el = document.getElementById('user-email');
+  if(el){
+    el.textContent = userEmail;
+  }
+}
+
+// ── LOGOUT ──
+function logout(){
+  localStorage.removeItem('access');
+  localStorage.removeItem('user_email');
+  window.location.href = 'index.html';
+}</script>
 </body>
 </html>
