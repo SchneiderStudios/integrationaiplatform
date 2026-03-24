@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Rewrite /.netlify/functions/* to the functions directory (default Netlify behaviour).
+# No explicit redirect needed — Netlify maps /.netlify/functions/<name> automatically.
+
+# Optional: set Node.js version for functions
+[functions]
+  node_bundler = "esbuild"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

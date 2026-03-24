@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchneiderStudios – ChatGPT für Deutschland</title>
+<meta name="description" id="doc-desc" content="Kostenloser ChatGPT & KI-Kurs für das Leben in Deutschland. Jobcenter, Finanzamt, Krankenkasse – jetzt Beta-Zugang sichern.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0a0a0a;--ink:#1d1d1f;--white:#fff;--snow:#f5f5f7;
+  --edge:#d2d2d7;--dim:#6e6e73;--blue:#0071e3;--blue2:#0077ed;
+  --green:#34c759;--glow:rgba(0,113,227,.15);
+  --serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;inset:0 0 auto;height:52px;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(255,255,255,.88);backdrop-filter:saturate(200%) blur(22px);border-bottom:1px solid rgba(0,0,0,.07);}
+.logo{font-family:var(--serif);font-size:17px;text-decoration:none;color:var(--ink);}
+.logo em{color:var(--blue);font-style:normal;}
+.nav-links{display:flex;gap:4px;}
+.nl{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--dim);padding:5px 10px;border-radius:6px;transition:color .2s;}
+.nl:hover{color:var(--ink);}
+.nav-r{display:flex;align-items:center;gap:10px;}
+.lsw{display:flex;background:var(--snow);border:1px solid var(--edge);border-radius:99px;padding:3px;gap:1px;}
+.lb{font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;background:none;border:none;cursor:pointer;color:var(--dim);font-family:var(--sans);transition:all .2s;}
+.lb.on{background:var(--white);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.ncta{background:var(--blue);color:#fff;border:none;border-radius:99px;padding:8px 20px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all .2s;}
+.ncta:hover{background:var(--blue2);transform:scale(1.02);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 24px 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;top:0;left:50%;transform:translateX(-50%);width:140vw;height:70vh;background:radial-gradient(ellipse at 50% 0%,rgba(0,113,227,.07),transparent 60%);pointer-events:none;}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:28px;opacity:0;animation:up .7s .1s ease forwards;}
+.pill::before,.pill::after{content:'';width:24px;height:1px;background:currentColor;}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,9.5vw,100px);line-height:1.03;letter-spacing:-2.5px;color:var(--black);max-width:980px;margin-bottom:12px;opacity:0;animation:up .7s .2s ease forwards;}
+.hero h1 em{font-style:italic;color:var(--blue);}
+.hero-sub{font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--dim);max-width:580px;line-height:1.65;margin:0 auto 52px;opacity:0;animation:up .7s .35s ease forwards;}
+.hero-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:up .7s .45s ease forwards;}
+.btn-p{background:var(--blue);color:#fff;border:none;border-radius:99px;padding:17px 42px;font-size:17px;font-weight:600;font-family:var(--sans);cursor:pointer;box-shadow:0 4px 24px var(--glow);transition:all .2s;}
+.btn-p:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 8px 32px var(--glow);}
+.btn-g{background:transparent;color:var(--blue);border:1.5px solid rgba(0,113,227,.3);border-radius:99px;padding:16px 40px;font-size:17px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all .2s;}
+.btn-g:hover{border-color:var(--blue);background:rgba(0,113,227,.04);}
+.hero-note{margin-top:28px;font-size:14px;color:var(--dim);opacity:0;animation:up .7s .55s ease forwards;}
+.hero-note strong{color:var(--ink);}
+
+/* ── TRUST ── */
+.trust{display:flex;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);}
+.ti{flex:1;min-width:110px;text-align:center;padding:28px 12px;border-right:1px solid var(--edge);}
+.ti:last-child{border-right:none;}
+.tn{font-family:var(--serif);font-size:40px;color:var(--black);}
+.tl{font-size:12px;color:var(--dim);margin-top:3px;}
+
+/* ── SECTION BASE ── */
+section{padding:120px 24px;}
+.wrap{max-width:1080px;margin:0 auto;}
+.eye{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:14px;}
+.sh{font-family:var(--serif);font-size:clamp(38px,5.5vw,66px);font-weight:400;line-height:1.07;letter-spacing:-1.5px;color:var(--black);margin-bottom:20px;}
+.sh em{font-style:italic;color:var(--blue);}
+.sp{font-size:19px;font-weight:300;color:var(--dim);line-height:1.65;max-width:540px;}
+
+/* ── BENTO ── */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px;}
+.bc{background:var(--snow);border-radius:24px;padding:40px 36px;overflow:hidden;position:relative;transition:transform .3s;}
+.bc:hover{transform:translateY(-3px);}
+.bc.c2{grid-column:span 2;}
+.bc.dark{background:var(--black);color:#fff;}
+.bc.blue{background:var(--blue);color:#fff;}
+.bc-ico{font-size:38px;margin-bottom:18px;display:block;}
+.bc-h{font-family:var(--serif);font-size:clamp(20px,2.2vw,27px);font-weight:400;line-height:1.2;margin-bottom:11px;}
+.bc-p{font-size:15px;line-height:1.7;opacity:.72;}
+.bc.dark .bc-p,.bc.blue .bc-p{opacity:.82;}
+.bc-num{font-family:var(--serif);font-size:88px;font-weight:400;line-height:.9;color:var(--blue);margin-bottom:8px;}
+.bc.dark .bc-num{color:#fff;}
+.bc-glow{position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.07),transparent);}
+
+/* ── MODULES DARK ── */
+.msec{background:var(--black);padding:120px 24px;}
+.msec .sh{color:#fff;}.msec .sp{color:rgba(255,255,255,.42);}.msec .eye{color:rgba(255,255,255,.28);}
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:64px;border-radius:22px;overflow:hidden;}
+.mt{background:#141414;padding:48px 42px;position:relative;overflow:hidden;transition:background .25s;}
+.mt:hover{background:#1c1c1e;}
+.mt::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--mc,var(--blue)),transparent);opacity:0;transition:opacity .3s;}
+.mt:hover::after{opacity:1;}
+.mt-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--mc,var(--blue));margin-bottom:18px;}
+.mt-h{font-family:var(--serif);font-size:clamp(18px,2vw,24px);font-weight:400;line-height:1.25;color:#fff;margin-bottom:16px;}
+.mt-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:18px;}
+.mt-list{display:flex;flex-direction:column;gap:9px;}
+.mt-li{display:flex;align-items:flex-start;gap:9px;font-size:14px;color:rgba(255,255,255,.38);padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.055);}
+.mt-li:last-child{border-bottom:none;padding-bottom:0;}
+.mt-dot{width:4px;height:4px;border-radius:50%;background:var(--mc,var(--blue));flex-shrink:0;margin-top:5px;}
+
+/* ── USE CASES ── */
+.ucg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px;}
+.uc{background:var(--snow);border-radius:20px;padding:28px;transition:transform .25s,box-shadow .25s;}
+.uc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.09);}
+.uc-ico{font-size:32px;margin-bottom:14px;}
+.uc-h{font-size:16px;font-weight:700;margin-bottom:8px;}
+.uc-p{font-size:14px;line-height:1.7;color:var(--dim);}
+.uc-tag{display:inline-block;margin-top:12px;font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;}
+
+/* ── REVIEWS ── */
+.rvg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px;}
+.rv{background:var(--snow);border-radius:20px;padding:30px;}
+.rv-s{font-size:13px;color:#f59e0b;letter-spacing:2px;margin-bottom:14px;}
+.rv-t{font-size:16px;line-height:1.75;font-style:italic;color:var(--ink);margin-bottom:20px;}
+.rv-who{display:flex;align-items:center;gap:11px;}
+.rv-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#7c3aed);display:flex;align-items:center;justify-content:center;font-size:17px;}
+.rv-n{font-weight:600;font-size:14px;}
+.rv-sub{font-size:12px;color:var(--dim);}
+
+/* ── PRICE ── */
+.psec{background:var(--snow);padding:120px 24px;}
+.pcard{max-width:500px;margin:64px auto 0;background:var(--white);border-radius:28px;padding:52px 48px;border:1.5px solid var(--edge);box-shadow:0 2px 40px rgba(0,0,0,.07);text-align:center;transition:transform .3s,box-shadow .3s;}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.12);}
+.p-tier{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--dim);margin-bottom:10px;}
+.p-name{font-family:var(--serif);font-size:26px;margin-bottom:6px;}
+.p-price{font-family:var(--serif);font-size:88px;font-weight:400;line-height:1;color:var(--black);margin-bottom:4px;}
+.p-price sup{font-size:28px;vertical-align:top;margin-top:16px;display:inline-block;}
+.p-desc{font-size:15px;color:var(--dim);margin-bottom:36px;line-height:1.55;}
+.p-list{list-style:none;margin-bottom:40px;text-align:left;display:flex;flex-direction:column;gap:13px;}
+.p-list li{font-size:15px;display:flex;align-items:flex-start;gap:10px;line-height:1.45;}
+.p-list li::before{content:'✓';color:var(--blue);font-weight:800;flex-shrink:0;margin-top:1px;}
+.p-btn{width:100%;padding:18px;border-radius:14px;border:none;background:var(--blue);color:#fff;font-size:17px;font-weight:600;font-family:var(--sans);cursor:pointer;box-shadow:0 4px 20px var(--glow);transition:all .2s;}
+.p-btn:hover{background:var(--blue2);transform:scale(1.01);}
+.refund{display:inline-flex;align-items:center;gap:6px;margin-top:18px;background:rgba(52,199,89,.1);border:1px solid rgba(52,199,89,.3);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;color:#15803d;}
+.p-fine{margin-top:14px;font-size:13px;color:var(--dim);line-height:1.6;}
+.p-fine strong{color:var(--ink);}
+
+/* ── FAQ ── */
+.faq-w{max-width:700px;margin:60px auto 0;}
+.fi{border-bottom:1px solid var(--edge);}
+.fq{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:22px 0;font-size:17px;font-weight:500;color:var(--ink);text-align:left;font-family:var(--sans);gap:16px;transition:color .2s;}
+.fq:hover{color:var(--blue);}
+.farr{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--edge);background:var(--snow);display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .3s;flex-shrink:0;}
+.fi.open .farr{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(180deg);}
+.fa{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.fi.open .fa{max-height:300px;}
+.fa-in{padding:0 0 22px;font-size:16px;line-height:1.75;color:var(--dim);}
+
+/* ── CTA DARK ── */
+.ctasec{background:var(--black);padding:160px 24px;text-align:center;position:relative;overflow:hidden;}
+.ctasec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,113,227,.12),transparent 65%);pointer-events:none;}
+.ctasec .sh{color:#fff;margin:0 auto 16px;}
+.ctasec .sp{color:rgba(255,255,255,.44);margin:0 auto 48px;}
+
+/* ── FOOTER ── */
+footer{background:var(--snow);border-top:1px solid var(--edge);padding:40px 28px;}
+.ft{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.ft-logo{font-family:var(--serif);font-size:18px;}
+.ft-logo em{color:var(--blue);font-style:normal;}
+.ft-links{display:flex;gap:22px;flex-wrap:wrap;}
+.ft-links a{font-size:13px;color:var(--dim);text-decoration:none;transition:color .2s;}
+.ft-links a:hover{color:var(--ink);}
+.ft-c{font-size:13px;color:var(--dim);}
+
+/* ── ANIM ── */
+@keyframes up{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.rev{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.rev.vis{opacity:1;transform:translateY(0);}
+
+/* ── PAYMENT MODAL ── */
+/* ── SIGNUP MODAL ── */
+.sm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.sm-overlay.on{opacity:1;pointer-events:all;}
+.sm-box{background:var(--white);border-radius:24px;width:100%;max-width:480px;padding:36px;box-shadow:0 24px 80px rgba(0,0,0,.22);transform:scale(.95) translateY(16px);transition:transform .3s;max-height:90vh;overflow-y:auto;}
+.sm-overlay.on .sm-box{transform:scale(1) translateY(0);}
+.sm-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+.sm-logo{font-family:var(--serif);font-size:17px;}
+.sm-logo em{color:var(--blue);font-style:normal;}
+.sm-close{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--edge);background:var(--snow);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:var(--dim);transition:all .2s;flex-shrink:0;}
+.sm-close:hover{background:var(--edge);}
+.sm-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(52,199,89,.1);border:1px solid rgba(52,199,89,.3);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:700;color:#15803d;margin-bottom:14px;}
+.sm-h{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.2;letter-spacing:-.5px;margin-bottom:8px;}
+.sm-sub{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:24px;}
+.sm-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+.sm-field{display:flex;flex-direction:column;gap:5px;}
+.sm-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);}
+.sm-input{padding:12px 14px;border-radius:11px;border:1.5px solid var(--edge);background:var(--snow);font-size:15px;color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .2s;}
+.sm-input:focus{border-color:var(--blue);}
+.sm-input.err{border-color:var(--red,#ff3b30);}
+.sm-btn{width:100%;padding:15px;border-radius:12px;border:none;background:var(--blue);color:#fff;font-size:16px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(0,113,227,.3);}
+.sm-btn:hover:not(:disabled){background:var(--blue2);}
+.sm-btn:disabled{opacity:.55;cursor:not-allowed;}
+.sm-err{font-size:13px;color:#ff3b30;margin-top:10px;min-height:18px;line-height:1.5;}
+.sm-privacy{font-size:12px;color:var(--dim);line-height:1.55;margin-top:12px;text-align:center;}
+.sm-privacy a{color:var(--blue);text-decoration:none;}
+/* test helper bar */
+.test-bar{position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:12px;z-index:400;font-family:var(--sans);}
+.test-bar span{opacity:.6;}
+.tb-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:5px 12px;color:#fff;font-size:12px;cursor:pointer;font-family:var(--sans);transition:background .2s;}
+.tb-btn:hover{background:rgba(255,255,255,.22);}
+.tb-btn.grant{border-color:#34c759;color:#34c759;}
+.tb-btn.revoke{border-color:#ff3b30;color:#ff3b30;}
+/* legal disclaimer */
+.legal-note{background:var(--snow);border-left:3px solid var(--edge);padding:14px 18px;border-radius:0 10px 10px 0;font-size:13px;color:var(--dim);line-height:1.65;max-width:600px;margin:20px auto 0;}
+
+@media(max-width:800px){
+  .nav-links{display:none;}
+  .bento,.mgrid,.ucg,.rvg{grid-template-columns:1fr!important;}
+  .bc.c2{grid-column:span 1;}
+  .trust{flex-wrap:wrap;}
+  .ti{min-width:50%;border-right:none;border-bottom:1px solid var(--edge);}
+  .pcard{padding:36px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Schneider<em>Studios</em></a>
+  <div class="nav-links">
+    <button class="nl" onclick="sc('#modules')" id="nl-kurs"></button>
+    <button class="nl" onclick="sc('#usecases')" id="nl-use"></button>
+    <button class="nl" onclick="sc('#pricing')" id="nl-price"></button>
+    <button class="nl" onclick="sc('#faq')">FAQ</button>
+  </div>
+  <div class="nav-r">
+    <div class="lsw">
+      <button class="lb on" id="btn-de" onclick="setL('de')">DE</button>
+      <button class="lb" id="btn-ru" onclick="setL('ru')">RU</button>
+    </div>
+    <button class="ncta" onclick="buyCourse()" id="ncta-btn"></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="pill" id="hero-pill"></div>
+  <h1 id="hero-h1"></h1>
+  <p class="hero-sub" id="hero-sub"></p>
+  <div class="hero-btns">
+    <button class="btn-p" onclick="buyCourse()" id="hero-btn1"></button>
+    <button class="btn-g" onclick="sc('#modules')" id="hero-btn2"></button>
+  </div>
+  <p class="hero-note" id="hero-note"></p>
+</section>
+
+<div class="trust rev">
+  <div class="ti"><div class="tn">4</div><div class="tl" id="tr1"></div></div>
+  <div class="ti"><div class="tn">16</div><div class="tl" id="tr2"></div></div>
+  <div class="ti"><div class="tn">48</div><div class="tl" id="tr3"></div></div>
+  <div class="ti"><div class="tn">12+</div><div class="tl" id="tr4"></div></div>
+  <div class="ti"><div class="tn">∞</div><div class="tl" id="tr5"></div></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eye rev" id="why-eye"></div>
+    <h2 class="sh rev" id="why-h"></h2>
+    <div class="bento">
+      <div class="bc c2 dark rev">
+        <div class="bc-glow"></div>
+        <span class="bc-ico">🇩🇪</span>
+        <div class="bc-h" id="bc1-h"></div>
+        <div class="bc-p" id="bc1-p"></div>
+      </div>
+      <div class="bc rev">
+        <span class="bc-ico">⚡</span>
+        <div class="bc-h" id="bc2-h"></div>
+        <div class="bc-p" id="bc2-p"></div>
+      </div>
+      <div class="bc rev">
+        <div class="bc-num">∞</div>
+        <div class="bc-h" id="bc3-h"></div>
+        <div class="bc-p" id="bc3-p"></div>
+      </div>
+      <div class="bc blue rev">
+        <span class="bc-ico">🌐</span>
+        <div class="bc-h" id="bc4-h"></div>
+        <div class="bc-p" id="bc4-p"></div>
+      </div>
+      <div class="bc c2 rev">
+        <span class="bc-ico">🧠</span>
+        <div class="bc-h" id="bc5-h"></div>
+        <div class="bc-p" id="bc5-p"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="modules">
+  <div class="wrap">
+    <div class="eye rev" id="mod-eye"></div>
+    <h2 class="sh rev" id="mod-h"></h2>
+    <p class="sp rev" id="mod-p"></p>
+    <div class="mgrid rev" id="mgrid"></div>
+  </div>
+</section>
+
+<section id="usecases">
+  <div class="wrap">
+    <div class="eye rev" id="uc-eye"></div>
+    <h2 class="sh rev" id="uc-h"></h2>
+    <div class="ucg" id="ucg"></div>
+  </div>
+</section>
+
+<section style="background:var(--snow);padding:120px 24px;">
+  <div class="wrap">
+    <div class="eye rev" id="rv-eye"></div>
+    <h2 class="sh rev" id="rv-h"></h2>
+    <div class="rvg" id="rvg"></div>
+  </div>
+</section>
+
+<section class="psec" id="pricing">
+  <div class="wrap" style="text-align:center">
+    <div class="eye rev" style="display:flex;justify-content:center" id="p-eye"></div>
+    <h2 class="sh rev" style="margin:0 auto" id="p-h"></h2>
+    <p class="sp rev" style="margin:12px auto 0" id="p-sub"></p>
+    <div class="pcard rev">
+      <div class="p-tier" id="p-tier"></div>
+      <div class="p-name" id="p-name"></div>
+      <div class="p-free-badge" id="p-free-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(52,199,89,.1);border:1px solid rgba(52,199,89,.3);border-radius:99px;padding:7px 18px;font-size:14px;font-weight:700;color:#15803d;margin:8px auto 6px;"></div>
+      <p class="p-desc" id="p-desc"></p>
+      <ul class="p-list" id="p-list"></ul>
+      <button class="p-btn" id="p-btn" onclick="buyCourse()"></button>
+      <p class="p-fine" id="p-fine"></p>
+      <p class="legal-note" id="p-legal"></p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="text-align:center">
+    <div class="eye rev" style="display:flex;justify-content:center">FAQ</div>
+    <h2 class="sh rev" style="margin:0 auto" id="faq-h"></h2>
+    <div class="faq-w rev" id="faq-list"></div>
+  </div>
+</section>
+
+<section class="ctasec">
+  <div class="wrap">
+    <h2 class="sh rev" id="cta-h"></h2>
+    <p class="sp rev" id="cta-p"></p>
+    <button class="btn-p rev" style="font-size:19px;padding:19px 48px" id="cta-btn" onclick="buyCourse()"></button>
+    <p style="margin-top:20px;font-size:14px;color:rgba(255,255,255,.4)" class="rev" id="cta-note"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div class="ft-logo">Schneider<em>Studios</em></div>
+    <div class="ft-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="kontakt.html" id="ft-contact"></a>
+      <a href="kurs.html" onclick="openCourseLink(event)" id="ft-kurs"></a>
+    </div>
+    <div class="ft-c">© 2025 SchneiderStudios</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  de: {
+    nav: {kurs:'Kursinhalt', use:'Anwendungen', price:'Zugang', cta:'Kostenlos starten'},
+    hero: {
+      pill:'SchneiderStudios · Kurs 2025',
+      h1:'ChatGPT & KI für<br><em>Deutschland meistern</em>',
+      sub:'Jobcenter, Finanzamt, Krankenkasse – mit KI meistern. Kostenloser Beta-Zugang, kein Technik-Vorwissen nötig.',
+      btn1:'Kostenlos starten →',
+      btn2:'Kursinhalt ansehen',
+      note:'✓ Kostenlos in der Beta &nbsp;·&nbsp; ✓ Sofortiger Zugang &nbsp;·&nbsp; ✓ Keine Kreditkarte nötig'
+    },
+    trust: ['Module','Lektionen','Quiz-Fragen','Behörden erklärt','Zugang'],
+    why: {
+      eye:'Warum dieser Kurs',
+      h:'KI, die den<br><em>deutschen Alltag kennt</em>',
+      bc1h:'Auf deutsche Behörden & Alltagssituationen zugeschnitten',
+      bc1p:'Kein generisches „ChatGPT für alle" – dieser Kurs zeigt, wie Sie KI für Jobcenter, Finanzamt, Krankenkasse, Vermieter und Arbeitgeber einsetzen. Mit echten deutschen Briefvorlagen.',
+      bc2h:'Sofort anwendbar',
+      bc2p:'Jede Lektion endet mit einer Aufgabe aus dem echten deutschen Leben. Kein Theorie-Kurs.',
+      bc3h:'Lebenslanger Zugang',
+      bc3p:'Einmal kaufen – für immer nutzen. Alle Updates inklusive.',
+      bc4h:'Deutsch & Russisch',
+      bc4p:'Ein Kurs, zwei Sprachen – ideal für russischsprachige Menschen in Deutschland.',
+      bc5h:'Interaktiv: Folien + Quizzes + echte Beispiele',
+      bc5p:'Animierte Lektionen mit 48 Quizfragen, Fortschritts-Tracking und persönlichem Profil. Lernen Sie in Ihrem Tempo.'
+    },
+    modules: {
+      eye:'Kursinhalt',
+      h:'Vier Module –<br><em>von null bis Profi</em>',
+      p:'Jedes Modul baut auf dem vorherigen auf. Am Ende nutzen Sie KI täglich für Behörden, Arbeit und Alltag in Deutschland.',
+      mods: [
+        {
+          color:'#0071e3', num:'Modul 01',
+          h:'Was ist ChatGPT & KI – und wie nutze ich es in Deutschland?',
+          desc:'Vollständige Einführung in ChatGPT – was es ist, wie man sich registriert und es für den Alltag nutzt.',
+          lessons:['Was ist KI / ChatGPT – einfach erklärt','ChatGPT, Claude, Gemini – welches wofür?','Registrierung, erste Schritte & Datenschutz (DSGVO)','Erste echte Gespräche – live demonstriert']
+        },
+        {
+          color:'#ff9500', num:'Modul 02',
+          h:'Effektive Prompts – bessere Ergebnisse von ChatGPT',
+          desc:'Wie man präzise Anfragen formuliert, um die besten Ergebnisse für Behörden, Arbeit und Alltag zu erhalten.',
+          lessons:['Die Formel für perfekte Prompts','Prompts für Jobcenter, Finanzamt & Behördenbriefe','Bewerbung & Arbeitszeugnis mit KI optimieren','Deutsch verbessern & Gespräche verfeinern']
+        },
+        {
+          color:'#34c759', num:'Modul 03',
+          h:'KI & deutsche Bürokratie – konkret & praktisch',
+          desc:'Praktische Nutzung von KI in deutschen Behörden – Anträge, Widersprüche, Bescheide verstehen.',
+          lessons:['Jobcenter: Anträge, Widersprüche, Sanktionsbescheide','Finanzamt: Steuererklärung vorbereiten & Begriffe verstehen','Krankenkasse, Rentenversicherung & Sozialamt','Mietrecht: Verträge, Nebenkosten, Mängelanzeige']
+        },
+        {
+          color:'#af52de', num:'Modul 04',
+          h:'KI für Arbeit, Business & Alltag in Deutschland',
+          desc:'Überblick nützlicher KI-Anwendungen für das Leben in Deutschland – vom Beruf bis zur Sprache.',
+          lessons:['Selbstständig in DE: Gewerbe, Steuern & Rechnungen','Übersetzen, Texte korrigieren, E-Mails verfassen','Nützliche KI-Tools für den deutschen Alltag','KI sicher einsetzen – Stärken & Grenzen']
+        }
+      ]
+    },
+    usecases: {
+      eye:'Anwendungsfälle',
+      h:'Was Sie nach dem Kurs<br><em>wirklich können</em>',
+      items: [
+        {ico:'📋',h:'Jobcenter-Brief in 3 Minuten',p:'Sanktionsbescheid bekommen? ChatGPT hilft Ihnen, einen klaren Widerspruch auf Deutsch zu formulieren – korrekt und überzeugend.',tag:'Jobcenter'},
+        {ico:'📊',h:'Steuererklärung vorbereiten',p:'Fragen Sie: „Was kann ich als Werbungskosten absetzen?" oder „Was bedeutet Anlage N?" – sofort verständliche Antworten auf Deutsch.',tag:'Finanzamt'},
+        {ico:'🏥',h:'Krankenkassen-Brief verstehen',p:'Unverständliches Schreiben von der Krankenkasse? ChatGPT übersetzt Behördendeutsch und hilft bei der Antwort.',tag:'Krankenkasse'},
+        {ico:'🏠',h:'Mietvertrag prüfen lassen',p:'Schwierige Klauseln in ChatGPT kopieren und fragen: „Was bedeutet das für mich?" Erste Orientierung ohne teure Anwälte.',tag:'Wohnen'},
+        {ico:'💼',h:'Bewerbung auf Deutsch perfektionieren',p:'ChatGPT schreibt und verbessert Ihr Anschreiben, prüft Grammatik und passt den Ton an den deutschen Arbeitsmarkt an.',tag:'Arbeit'},
+        {ico:'🗣️',h:'Deutsch besser verstehen',p:'„Erkläre mir diesen Satz einfacher" oder „Wie antworte ich höflich auf Deutsch?" – Ihr persönlicher Sprachcoach 24/7.',tag:'Deutsch lernen'}
+      ]
+    },
+    reviews: {
+      eye:'Stimmen aus dem Kurs',
+      h:'Was Teilnehmer<br><em>berichten</em>',
+      items:[
+        {t:'„Endlich versteht man das. Die Erklärungen sind einfach und praxisnah – ich habe gleich meinen ersten Behördenbrief mit ChatGPT-Hilfe formuliert."',n:'O. K.',s:'Hamburg'},
+        {t:'„Das Finanzamt-Modul hat mir geholfen, viele Begriffe zu verstehen, die mich vorher verwirrt haben. Ich gehe jetzt deutlich entspannter an das Thema."',n:'A. M.',s:'München'},
+        {t:'„Als russischsprachige Person in Deutschland ist der Kurs auf Russisch und Deutsch gleichzeitig verfügbar – das ist sehr praktisch."',n:'N. V.',s:'Berlin'}
+      ]
+    },
+    pricing: {
+      eye:'Beta-Zugang', h:'Jetzt kostenlos –<br><em>Beta-Zugang</em>',
+      sub:'Melden Sie sich an und erhalten Sie sofort kostenlosen Zugang zum vollständigen Kurs.',
+      tier:'Kostenloser Beta-Zugang', name:'ChatGPT & KI für Deutschland',
+      freeBadge:'✓ Komplett kostenlos',
+      desc:'Alle 4 Module, 16 Lektionen, sofortiger Zugang nach kurzer Anmeldung.',
+      list:['16 interaktive Lektionen mit deutschen Beispielen','Modul zu deutschen Behörden: Jobcenter, Finanzamt, Krankenkasse','48 Quizfragen mit sofortigem Feedback','Persönliches Profil und Fortschritts-Tracking','Kurs auf Deutsch und Russisch','Sofortiger Zugang nach Anmeldung'],
+      btn:'Beta-Zugang kostenlos →',
+      fine:'Einfache Anmeldung. Keine Kreditkarte. Kein Abo.'
+    },
+    faq: {
+      h:'Häufige<br><em>Fragen</em>',
+      items:[
+        {q:'Brauche ich technische Vorkenntnisse?', a:'Nein. Der Kurs ist für absolute Anfänger gemacht. Sie brauchen nur ein Gerät mit Internet und eine E-Mail-Adresse.'},
+        {q:'Ist der Kurs wirklich kostenlos?', a:'Ja – der Kurs ist in der Beta-Phase komplett kostenlos. Melden Sie sich an und erhalten Sie sofort Zugang. Keine Kreditkarte, kein Abo.'},
+        {q:'Wie lange habe ich Zugang?', a:'Lebenslang. Einmal zahlen – für immer nutzen. Alle zukünftigen Updates sind inklusive.'},
+        {q:'Kann ich zwischen Deutsch und Russisch wechseln?', a:'Ja! Per Knopfdruck jederzeit. Der gesamte Kurs ist in beiden Sprachen vollständig verfügbar.'},
+        {q:'Auf welchen Geräten funktioniert der Kurs?', a:'Auf allen Geräten: Smartphone, Tablet, Laptop, Desktop. Läuft direkt im Browser – keine App-Installation nötig.'},
+        {q:'Kann ich KI wirklich für Behördenbriefe nutzen?', a:'Ja! ChatGPT erstellt hervorragende Entwürfe. Sie prüfen, ergänzen Ihre Daten und senden ab. Wichtig: Der Kurs bietet sprachliche Orientierung und ersetzt keine Rechts- oder Steuerberatung.'}
+      ]
+    },
+    legal:'Der Kurs bietet Orientierung und Sprachhilfe und ersetzt keine Rechts- oder Steuerberatung. Der Beta-Zugang ist kostenlos und unverbindlich.',
+    cta:{h:'Hören Sie auf zu kämpfen –<br><em>lassen Sie KI helfen</em>',p:'Jobcenter, Finanzamt, Krankenkasse – kein Stress mehr. Holen Sie sich jetzt kostenlosen Beta-Zugang und legen Sie sofort los.',btn:'Kostenlosen Zugang anfordern →',note:'✓ Kostenlos &nbsp;·&nbsp; ✓ Kein Abo &nbsp;·&nbsp; ✓ Sofortiger Zugang'},
+    footer:{contact:'Kontakt', kurs:'Zum Kurs'}
+  },
+  ru: {
+    nav: {kurs:'Содержание', use:'Применение', price:'Доступ', cta:'Начать бесплатно'},
+    hero: {
+      pill:'SchneiderStudios · Курс 2025',
+      h1:'ChatGPT и ИИ для<br><em>жизни в Германии</em>',
+      sub:'Jobcenter, Finanzamt, Krankenkasse — справляться с ИИ. Бесплатный бета-доступ, технических знаний не нужно.',
+      btn1:'Начать бесплатно →',
+      btn2:'Посмотреть программу',
+      note:'✓ Бесплатно в бете &nbsp;·&nbsp; ✓ Мгновенный доступ &nbsp;·&nbsp; ✓ Без кредитной карты'
+    },
+    trust: ['модуля','уроков','вопросов в квизах','ведомств разобрано','доступ навсегда'],
+    why: {
+      eye:'Почему этот курс',
+      h:'ИИ, который знает<br><em>немецкий быт</em>',
+      bc1h:'Курс заточен под немецкую бюрократию и реальную жизнь',
+      bc1p:'Никакого общего «ChatGPT для всех» — курс показывает, как использовать ИИ для Jobcenter, Finanzamt, Krankenkasse, арендодателей и работодателей. С реальными шаблонами писем.',
+      bc2h:'Применяется сразу',
+      bc2p:'Каждый урок заканчивается реальным заданием из немецкой жизни. Не теоретический курс.',
+      bc3h:'Вечный доступ',
+      bc3p:'Купить один раз — пользоваться всегда. Все обновления включены.',
+      bc4h:'Немецкий и русский',
+      bc4p:'Один курс на двух языках — идеально для русскоязычных в Германии.',
+      bc5h:'Интерактивно: слайды + квизы + реальные примеры',
+      bc5p:'Анимированные уроки с 48 вопросами, отслеживание прогресса и личный кабинет. Учитесь в своём темпе.'
+    },
+    modules: {
+      eye:'Программа курса',
+      h:'Четыре модуля —<br><em>от нуля до уверенного пользователя</em>',
+      p:'Каждый модуль строится на предыдущем. В конце вы используете ИИ ежедневно для ведомств, работы и быта.',
+      mods: [
+        {
+          color:'#0071e3', num:'Модуль 01',
+          h:'Что такое ChatGPT и ИИ — и как использовать в Германии?',
+          desc:'Полное введение в ChatGPT — что это, как зарегистрироваться и начать использовать для повседневных задач.',
+          lessons:['Что такое ИИ / ChatGPT — простое объяснение','ChatGPT, Claude, Gemini — какой и для чего?','Регистрация, первые шаги и защита данных (DSGVO)','Первые настоящие разговоры — живая демонстрация']
+        },
+        {
+          color:'#ff9500', num:'Модуль 02',
+          h:'Эффективные промпты — лучшие результаты от ChatGPT',
+          desc:'Как создавать эффективные запросы для получения лучших результатов в профессиональной деятельности и быту.',
+          lessons:['Формула идеального промпта','Промпты для Jobcenter, Finanzamt и ведомств','Заявка на работу и Arbeitszeugnis с ИИ','Улучшить немецкий и уточнять разговоры']
+        },
+        {
+          color:'#34c759', num:'Модуль 03',
+          h:'ИИ и немецкая бюрократия — конкретно и практично',
+          desc:'Практическое использование ИИ в немецких ведомствах — заявления, возражения, понимание уведомлений.',
+          lessons:['Jobcenter: заявления, возражения, санкционные письма','Finanzamt: подготовка декларации, понять термины','Krankenkasse, пенсионное страхование и Sozialamt','Жильё: договор аренды, Nebenkosten, Mängelanzeige']
+        },
+        {
+          color:'#af52de', num:'Модуль 04',
+          h:'ИИ для работы, бизнеса и жизни в Германии',
+          desc:'Обзор полезных ИИ-приложений для жизни в Германии — от планирования до изучения языка.',
+          lessons:['Самозанятость: Gewerbe, налоги и счета в Германии','Переводить, корректировать тексты, писать письма','Полезные ИИ-инструменты для немецкого быта','Безопасное использование ИИ — возможности и границы']
+        }
+      ]
+    },
+    usecases: {
+      eye:'Примеры применения',
+      h:'Что вы умеете<br><em>после курса</em>',
+      items: [
+        {ico:'📋',h:'Письмо в Jobcenter за 3 минуты',p:'Получили Sanktionsbescheid? ChatGPT поможет составить чёткое возражение на немецком — правильно и убедительно.',tag:'Jobcenter'},
+        {ico:'📊',h:'Подготовить Steuererklärung',p:'Спросите: «Что можно вычесть как Werbungskosten?» или «Что значит Anlage N?» — сразу понятные ответы на немецком.',tag:'Finanzamt'},
+        {ico:'🏥',h:'Понять письмо от Krankenkasse',p:'Непонятное письмо от страховой? ChatGPT переводит официальный немецкий на понятный язык и помогает с ответом.',tag:'Krankenkasse'},
+        {ico:'🏠',h:'Проверить договор аренды',p:'Скопируйте сложные пункты в ChatGPT и спросите: «Что это значит для меня?» Первая оценка без дорогих юристов.',tag:'Жильё'},
+        {ico:'💼',h:'Идеальная заявка на работу',p:'ChatGPT напишет и улучшит ваше Anschreiben, проверит грамматику и адаптирует тон под немецкий рынок труда.',tag:'Работа'},
+        {ico:'🗣️',h:'Лучше понимать немецкий',p:'«Объясни это предложение проще» или «Как вежливо ответить по-немецки?» — личный языковой тренер 24/7.',tag:'Немецкий язык'}
+      ]
+    },
+    reviews: {
+      eye:'Отзывы участников',
+      h:'Что говорят<br><em>участники</em>',
+      items:[
+        {t:'«Наконец-то понятные объяснения! Составила первое письмо в ведомство с помощью ChatGPT — это оказалось намного проще, чем я думала.»',n:'О. К.',s:'Гамбург'},
+        {t:'«Модуль по Finanzamt помог разобраться с терминами, которые раньше меня пугали. Теперь подхожу к теме налогов гораздо спокойнее.»',n:'А. М.',s:'Мюнхен'},
+        {t:'«Очень удобно, что курс доступен и на русском, и на немецком языке — можно легко переключаться.»',n:'Н. В.',s:'Берлин'}
+      ]
+    },
+    pricing: {
+      eye:'Бета-доступ', h:'Сейчас бесплатно –<br><em>бета-доступ</em>',
+      sub:'Зарегистрируйтесь и получите мгновенный бесплатный доступ к полному курсу.',
+      tier:'Бесплатный бета-доступ', name:'ChatGPT и ИИ для Германии',
+      freeBadge:'✓ Полностью бесплатно',
+      desc:'Все 4 модуля, 16 уроков, мгновенный доступ после короткой регистрации.',
+      list:['16 интерактивных уроков с немецкими примерами','Модуль по немецким ведомствам: Jobcenter, Finanzamt, Krankenkasse','48 вопросов в квизах с мгновенной обратной связью','Личный кабинет и отслеживание прогресса','Курс на немецком и русском языках','Мгновенный доступ после регистрации'],
+      btn:'Бета-доступ бесплатно →',
+      fine:'Простая регистрация. Без карты. Без подписки.'
+    },
+    faq: {
+      h:'Частые<br><em>вопросы</em>',
+      items:[
+        {q:'Нужны ли технические знания?', a:'Нет. Курс создан для полных новичков. Нужен только телефон или компьютер с интернетом и email-адрес.'},
+        {q:'Курс действительно бесплатный?', a:'Да — в период бета-тестирования курс полностью бесплатен. Зарегистрируйтесь и получите мгновенный доступ. Без карты, без подписки.'},
+        {q:'Как долго у меня будет доступ?', a:'Навсегда. Платите один раз — пользуетесь всегда. Все будущие обновления включены.'},
+        {q:'Можно ли переключаться между языками?', a:'Да! Одним нажатием в любой момент. Весь курс полностью доступен на обоих языках.'},
+        {q:'На каких устройствах работает курс?', a:'На всех: смартфон, планшет, ноутбук, компьютер. В браузере — не нужно ничего устанавливать.'},
+        {q:'Можно использовать ИИ для реальных писем в ведомства?', a:'Да! ChatGPT создаёт отличные черновики. Вы проверяете, добавляете свои данные и отправляете. Важно: курс даёт языковую и структурную помощь, но не заменяет юридическую или налоговую консультацию.'}
+      ]
+    },
+    legal:'Курс даёт языковую и структурную помощь, но не заменяет юридическую или налоговую консультацию. Бета-доступ предоставляется бесплатно.',
+    cta:{h:'Перестаньте бороться с бюрократией –<br><em>пусть ИИ поможет</em>',p:'Jobcenter, Finanzamt, Krankenkasse — больше никакого стресса. Получите бесплатный бета-доступ и начните прямо сейчас.',btn:'Получить бесплатный доступ →',note:'✓ Бесплатно &nbsp;·&nbsp; ✓ Без подписки &nbsp;·&nbsp; ✓ Мгновенный доступ'},
+    footer:{contact:'Контакт', kurs:'К курсу'}
+  }
+};
+
+const SM = {
+  de:{
+    badge:'🎉 Kostenlos in der Beta',
+    title:'Kostenloser Zugang zum Kurs',
+    sub:'Bitte tragen Sie Ihre Daten ein. Danach erhalten Sie sofort Zugang.',
+    nameL:'Name', namePh:'Ihr Name',
+    emailL:'E-Mail', emailPh:'ihre@email.de',
+    tgL:'Telegram (optional)', tgPh:'@username',
+    goalL:'Ihr Lernziel (optional)', goalPh:'z.B. Ich möchte Behördenbriefe selbst schreiben...',
+    btn:'Kostenlosen Zugang öffnen',
+    sending:'Wird gesendet...',
+    privacy:'Mit der Anmeldung stimmen Sie der <a href="datenschutz.html">Datenschutzerklärung</a> zu.',
+    errRequired:'Bitte Name und E-Mail ausfüllen.',
+    errNetwork:'Verbindungsfehler. Bitte versuchen Sie es erneut.'
+  },
+  ru:{
+    badge:'🎉 Бесплатно в период беты',
+    title:'Бесплатный доступ к курсу',
+    sub:'Оставьте данные, и после отправки вы сразу получите доступ.',
+    nameL:'Имя', namePh:'Ваше имя',
+    emailL:'E-Mail', emailPh:'ваш@email.com',
+    tgL:'Telegram (по желанию)', tgPh:'@username',
+    goalL:'Ваша цель (по желанию)', goalPh:'напр. Хочу научиться писать письма в Jobcenter...',
+    btn:'Открыть бесплатный доступ',
+    sending:'Отправка...',
+    privacy:'Регистрируясь, вы соглашаетесь с <a href="datenschutz.html">политикой конфиденциальности</a>.',
+    errRequired:'Пожалуйста, заполните имя и e-mail.',
+    errNetwork:'Ошибка соединения. Попробуйте ещё раз.'
+  }
+};
+
+let lang = localStorage.getItem('ss_lang')||'de';
+
+// ── ACCESS ──
+// NOTE: localStorage 'access' is a temporary client-side placeholder.
+// It does NOT provide real content protection — a determined user can bypass it.
+// Replace with server-side session/token verification after payment integration.
+function hasAccess(){ return localStorage.getItem('access')==='true'; }
+function setAccess(){ localStorage.setItem('access','true'); updTestBar(); alert(lang==='de'?'✅ Zugang gewährt. Kurs-Links sind jetzt freigeschaltet.':'✅ Доступ предоставлен. Ссылки на курс разблокированы.'); render(); }
+function clearAccess(){ localStorage.removeItem('access'); updTestBar(); alert(lang==='de'?'🔒 Zugang entfernt.':'🔒 Доступ отозван.'); render(); }
+function updTestBar(){
+  const bar=document.getElementById('test-bar');
+  if(bar) bar.style.display=DEV_MODE?'flex':'none';
+  const s=document.getElementById('tb-status');
+  if(s) s.innerHTML=hasAccess()
+    ?'<span style="color:#34c759">● Zugang aktiv / Доступ активен</span>'
+    :'<span style="color:#ff3b30">● Kein Zugang / Нет доступа</span>';
+}
+
+// ── SIGNUP MODAL ──
+function buyCourse(){
+  if(hasAccess()){ window.location.href = 'kurs.html'; return; }
+  const s=SM[lang];
+  document.getElementById('sm-badge').textContent=s.badge;
+  document.getElementById('sm-h').textContent=s.title;
+  document.getElementById('sm-sub').textContent=s.sub;
+  document.getElementById('sm-name-l').textContent=s.nameL;
+  document.getElementById('sm-name').placeholder=s.namePh;
+  document.getElementById('sm-email-l').textContent=s.emailL;
+  document.getElementById('sm-email').placeholder=s.emailPh;
+  document.getElementById('sm-tg-l').textContent=s.tgL;
+  document.getElementById('sm-tg').placeholder=s.tgPh;
+  document.getElementById('sm-goal-l').textContent=s.goalL;
+  document.getElementById('sm-goal').placeholder=s.goalPh;
+  document.getElementById('sm-submit').textContent=s.btn;
+  document.getElementById('sm-privacy').innerHTML=s.privacy;
+  document.getElementById('sm-err').textContent='';
+  document.getElementById('sm-overlay').classList.add('on');
+}
+function closeSM(){ document.getElementById('sm-overlay').classList.remove('on'); }
+function smClose(e){ if(e.target.id==='sm-overlay') closeSM(); }
+
+async function submitSignup(){
+  const s=SM[lang];
+  const name=document.getElementById('sm-name').value.trim();
+  const email=document.getElementById('sm-email').value.trim();
+  const tg=document.getElementById('sm-tg').value.trim();
+  const goal=document.getElementById('sm-goal').value.trim();
+  const btn=document.getElementById('sm-submit');
+  const errEl=document.getElementById('sm-err');
+
+  if(!name||!email){ errEl.textContent=s.errRequired; return; }
+  errEl.textContent='';
+  btn.disabled=true;
+  btn.textContent=s.sending;
+
+  try {
+    const res = await fetch('/.netlify/functions/send-to-telegram', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name, email, telegram:tg, goal,
+        lang, time: new Date().toLocaleString('de-DE',{timeZone:'Europe/Berlin'})})
+    });
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error||'server error');
+    // Grant access after successful submission
+    localStorage.setItem('access','true');
+    closeSM();
+    window.location.href = 'kurs.html';
+  } catch(err) {
+    errEl.textContent = s.errNetwork;
+    btn.disabled=false;
+    btn.textContent=s.btn;
+  }
+}
+
+// ── LANGUAGE ──
+function setL(l){
+  lang=l;
+  localStorage.setItem('ss_lang',l);
+  document.documentElement.lang=l;
+  document.getElementById('btn-de').classList.toggle('on',l==='de');
+  document.getElementById('btn-ru').classList.toggle('on',l==='ru');
+  render();
+}
+
+function sc(sel){
+  const el=document.querySelector(sel);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
+
+function render(){
+  const d=T[lang];
+
+  // SEO
+  document.title = lang==='de'
+    ? 'SchneiderStudios – ChatGPT & KI für Deutschland meistern'
+    : 'SchneiderStudios – ChatGPT и ИИ для жизни в Германии';
+  document.getElementById('doc-desc').setAttribute('content', lang==='de'
+    ? 'Kostenloser ChatGPT & KI-Kurs für Deutschland. Jobcenter, Finanzamt, Krankenkasse – mit KI meistern. Jetzt Beta-Zugang anfordern.'
+    : 'Бесплатный курс ChatGPT и ИИ для жизни в Германии. Jobcenter, Finanzamt, Krankenkasse — с ИИ справляться проще. Бета-доступ бесплатно.');
+
+  // nav
+  document.getElementById('nl-kurs').textContent=d.nav.kurs;
+  document.getElementById('nl-use').textContent=d.nav.use;
+  document.getElementById('nl-price').textContent=d.nav.price;
+  document.getElementById('ncta-btn').textContent=d.nav.cta;
+
+  // hero
+  document.getElementById('hero-pill').textContent=d.hero.pill;
+  document.getElementById('hero-h1').innerHTML=d.hero.h1;
+  document.getElementById('hero-sub').textContent=d.hero.sub;
+  document.getElementById('hero-btn1').textContent=d.hero.btn1;
+  document.getElementById('hero-btn2').textContent=d.hero.btn2;
+  document.getElementById('hero-note').innerHTML=d.hero.note;
+
+  // trust
+  d.trust.forEach((t,i)=>{document.getElementById('tr'+(i+1)).textContent=t;});
+
+  // why
+  document.getElementById('why-eye').textContent=d.why.eye;
+  document.getElementById('why-h').innerHTML=d.why.h;
+  document.getElementById('bc1-h').textContent=d.why.bc1h;
+  document.getElementById('bc1-p').textContent=d.why.bc1p;
+  document.getElementById('bc2-h').textContent=d.why.bc2h;
+  document.getElementById('bc2-p').textContent=d.why.bc2p;
+  document.getElementById('bc3-h').textContent=d.why.bc3h;
+  document.getElementById('bc3-p').textContent=d.why.bc3p;
+  document.getElementById('bc4-h').textContent=d.why.bc4h;
+  document.getElementById('bc4-p').textContent=d.why.bc4p;
+  document.getElementById('bc5-h').textContent=d.why.bc5h;
+  document.getElementById('bc5-p').textContent=d.why.bc5p;
+
+  // modules
+  document.getElementById('mod-eye').textContent=d.modules.eye;
+  document.getElementById('mod-h').innerHTML=d.modules.h;
+  document.getElementById('mod-p').textContent=d.modules.p;
+  document.getElementById('mgrid').innerHTML=d.modules.mods.map(m=>`
+    <div class="mt" style="--mc:${m.color}">
+      <div class="mt-num">${m.num}</div>
+      <div class="mt-h">${m.h}</div>
+      <div class="mt-desc">${m.desc}</div>
+      <div class="mt-list">${m.lessons.map(l=>`<div class="mt-li"><div class="mt-dot"></div>${l}</div>`).join('')}</div>
+    </div>`).join('');
+
+  // usecases
+  document.getElementById('uc-eye').textContent=d.usecases.eye;
+  document.getElementById('uc-h').innerHTML=d.usecases.h;
+  document.getElementById('ucg').innerHTML=d.usecases.items.map(u=>`
+    <div class="uc rev">
+      <div class="uc-ico">${u.ico}</div>
+      <div class="uc-h">${u.h}</div>
+      <div class="uc-p">${u.p}</div>
+      <div class="uc-tag">${u.tag}</div>
+    </div>`).join('');
+
+  // reviews
+  document.getElementById('rv-eye').textContent=d.reviews.eye;
+  document.getElementById('rv-h').innerHTML=d.reviews.h;
+  document.getElementById('rvg').innerHTML=d.reviews.items.map(r=>`
+    <div class="rv rev">
+      <div class="rv-s">★★★★★</div>
+      <p class="rv-t">${r.t}</p>
+      <div class="rv-who"><div class="rv-av">😊</div><div><div class="rv-n">${r.n}</div><div class="rv-sub">${r.s}</div></div></div>
+    </div>`).join('');
+
+  // pricing
+  const p=d.pricing;
+  document.getElementById('p-eye').textContent=p.eye;
+  document.getElementById('p-h').innerHTML=p.h;
+  document.getElementById('p-sub').textContent=p.sub;
+  document.getElementById('p-tier').textContent=p.tier;
+  document.getElementById('p-name').textContent=p.name;
+  document.getElementById('p-free-badge').textContent=p.freeBadge;
+  document.getElementById('p-desc').textContent=p.desc;
+  document.getElementById('p-list').innerHTML=p.list.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('p-btn').textContent=hasAccess()
+    ? (lang==='de'?'→ Kurs öffnen':'→ Открыть курс')
+    : p.btn;
+  document.getElementById('p-fine').innerHTML=p.fine;
+  const ln=document.getElementById('p-legal');
+  if(ln) ln.textContent=d.legal;
+
+  // faq
+  document.getElementById('faq-h').innerHTML=d.faq.h;
+  document.getElementById('faq-list').innerHTML=d.faq.items.map((f,i)=>`
+    <div class="fi">
+      <button class="fq" onclick="togFaq(this)">
+        ${f.q}
+        <div class="farr">▾</div>
+      </button>
+      <div class="fa"><div class="fa-in">${f.a}</div></div>
+    </div>`).join('');
+
+  // cta
+  document.getElementById('cta-h').innerHTML=d.cta.h;
+  document.getElementById('cta-p').textContent=d.cta.p;
+  document.getElementById('cta-btn').textContent=d.cta.btn;
+  document.getElementById('cta-note').innerHTML=d.cta.note;
+
+  // footer
+  document.getElementById('ft-contact').textContent=d.footer.contact;
+  document.getElementById('ft-kurs').textContent=d.footer.kurs;
+
+  // test bar
+  updTestBar();
+
+  // re-observe new elements
+  document.querySelectorAll('.rev').forEach(el=>{
+    if(!el.classList.contains('vis')) obs.observe(el);
+  });
+}
+
+function togFaq(btn){
+  const it=btn.closest('.fi');
+  const o=it.classList.contains('open');
+  document.querySelectorAll('.fi').forEach(i=>i.classList.remove('open'));
+  if(!o) it.classList.add('open');
+}
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('vis');});
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+// temporary client-side access (to be replaced by real payment)
+const DEV_MODE = false; // set to true to show test helper bar
+
+function openCourseLink(e){
+  e.preventDefault();
+  buyCourse();
+}
+setL(lang);
+</script>
+<!-- SIGNUP MODAL -->
+<div class="sm-overlay" id="sm-overlay" onclick="smClose(event)">
+  <div class="sm-box">
+    <div class="sm-top">
+      <div class="sm-logo">Schneider<em>Studios</em></div>
+      <div class="sm-close" onclick="closeSM()">✕</div>
+    </div>
+    <div class="sm-badge" id="sm-badge"></div>
+    <div class="sm-h" id="sm-h"></div>
+    <div class="sm-sub" id="sm-sub"></div>
+    <div class="sm-fields">
+      <div class="sm-field">
+        <label class="sm-label" id="sm-name-l"></label>
+        <input class="sm-input" id="sm-name" type="text" autocomplete="name">
+      </div>
+      <div class="sm-field">
+        <label class="sm-label" id="sm-email-l"></label>
+        <input class="sm-input" id="sm-email" type="email" autocomplete="email">
+      </div>
+      <div class="sm-field">
+        <label class="sm-label" id="sm-tg-l"></label>
+        <input class="sm-input" id="sm-tg" type="text" autocomplete="off">
+      </div>
+      <div class="sm-field">
+        <label class="sm-label" id="sm-goal-l"></label>
+        <textarea class="sm-input" id="sm-goal" rows="2" style="resize:vertical;"></textarea>
+      </div>
+    </div>
+    <button class="sm-btn" id="sm-submit" onclick="submitSignup()"></button>
+    <div class="sm-err" id="sm-err"></div>
+    <div class="sm-privacy" id="sm-privacy"></div>
+  </div>
+</div>
+
+<!-- TEST HELPER BAR (remove before production) -->
+<div class="test-bar" id="test-bar">
+  <span id="tb-status"></span>
+  <button class="tb-btn grant" onclick="setAccess()">✓ Grant access (test)</button>
+  <button class="tb-btn revoke" onclick="clearAccess()">✕ Clear access (test)</button>
+  <button class="tb-btn" onclick="document.getElementById('test-bar').style.display='none'" style="opacity:.4">hide</button>
+</div>
+
+</body>
+</html>

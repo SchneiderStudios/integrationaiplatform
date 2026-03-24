@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt – SchneiderStudios</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--ink:#1d1d1f;--dim:#6e6e73;--edge:#d2d2d7;--blue:#0071e3;--blue2:#0077ed;--snow:#f5f5f7;--sans:'DM Sans',sans-serif;--serif:'DM Serif Display',serif;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:#fff;color:var(--ink);}
+nav{height:52px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:90;}
+.logo{font-family:var(--serif);font-size:17px;text-decoration:none;color:var(--ink);}
+.logo em{color:var(--blue);font-style:normal;}
+.nav-r{display:flex;align-items:center;gap:10px;}
+.lsw{display:flex;background:var(--snow);border:1px solid var(--edge);border-radius:99px;padding:3px;gap:1px;}
+.lb{font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;background:none;border:none;cursor:pointer;color:var(--dim);font-family:var(--sans);transition:all .2s;}
+.lb.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.back{border:1.5px solid var(--edge);border-radius:99px;padding:7px 16px;font-size:13px;font-weight:500;font-family:var(--sans);color:var(--dim);text-decoration:none;transition:all .2s;}
+.back:hover{border-color:var(--blue);color:var(--blue);}
+main{max-width:580px;margin:0 auto;padding:80px 24px 100px;text-align:center;}
+h1{font-family:var(--serif);font-size:clamp(42px,7vw,68px);font-weight:400;letter-spacing:-1.5px;margin-bottom:12px;}
+h1 em{font-style:italic;color:var(--blue);}
+.sub{font-size:18px;color:var(--dim);font-weight:300;line-height:1.6;margin-bottom:56px;}
+.card{background:var(--snow);border-radius:24px;padding:40px;margin-bottom:16px;text-align:left;}
+.card-icon{font-size:36px;margin-bottom:16px;}
+.card-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--dim);margin-bottom:8px;}
+.card-value{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:10px;}
+.card-note{font-size:15px;color:var(--dim);line-height:1.6;}
+.tg-btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;text-decoration:none;border-radius:99px;padding:14px 28px;font-size:15px;font-weight:600;margin-top:16px;transition:background .2s;}
+.tg-btn:hover{background:var(--blue2);}
+.divider{border:none;border-top:1px solid var(--edge);margin:32px 0;}
+.ph{display:block;background:#fff;border:1.5px dashed var(--edge);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--dim);font-style:italic;margin:8px 0;text-align:left;}
+.ph strong{color:#92400e;font-style:normal;}
+footer{background:var(--snow);border-top:1px solid var(--edge);padding:32px;text-align:center;font-size:13px;color:var(--dim);}
+footer a{color:var(--blue);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Schneider<em>Studios</em></a>
+  <div class="nav-r">
+    <div class="lsw">
+      <button class="lb on" id="btn-de" onclick="setL('de')">DE</button>
+      <button class="lb" id="btn-ru" onclick="setL('ru')">RU</button>
+    </div>
+    <a class="back" href="index.html" id="nav-back"></a>
+  </div>
+</nav>
+
+<main>
+  <h1 id="k-h1"></h1>
+  <p class="sub" id="k-sub"></p>
+
+  <div class="card">
+    <div class="card-icon">✈️</div>
+    <div class="card-label" id="k-tg-label"></div>
+    <div class="card-value">@SchneiderStudios</div>
+    <div class="card-note" id="k-tg-note"></div>
+    <a class="tg-btn" href="https://t.me/SchneiderStudios" target="_blank">
+      <span>t.me/SchneiderStudios</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">📧</div>
+    <div class="card-label" id="k-email-label"></div>
+    <span class="ph"><strong>[E-Mail]:</strong> <span id="k-email-ph"></span></span>
+    <div class="card-note" id="k-email-note"></div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 SchneiderStudios &middot;
+  <a href="impressum.html">Impressum</a> &middot;
+  <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+<script>
+const KT = {
+  de:{
+    title:'Kontakt – SchneiderStudios',
+    back:'← Zurück',
+    h1:'Kontakt<br><em>aufnehmen</em>',
+    sub:'Fragen zum Kurs, zur Zahlung oder technische Probleme – wir helfen Ihnen gerne.',
+    tgLabel:'Telegram',
+    tgNote:'Die schnellste Antwort erhalten Sie über Telegram.',
+    emailLabel:'E-Mail',
+    emailPh:'Bitte E-Mail-Adresse eintragen',
+    emailNote:'Antwortzeit: in der Regel 1–2 Werktage.'
+  },
+  ru:{
+    title:'Контакт – SchneiderStudios',
+    back:'← Назад',
+    h1:'Связаться<br><em>с нами</em>',
+    sub:'Вопросы о курсе, оплате или технические проблемы — мы рады помочь.',
+    tgLabel:'Telegram',
+    tgNote:'Быстрее всего ответим через Telegram.',
+    emailLabel:'E-Mail',
+    emailPh:'Введите email-адрес',
+    emailNote:'Время ответа: как правило 1–2 рабочих дня.'
+  }
+};
+
+let lang = localStorage.getItem('ss_lang') || 'de';
+
+function setL(l){
+  lang = l;
+  localStorage.setItem('ss_lang', l);
+  document.getElementById('btn-de').classList.toggle('on', l==='de');
+  document.getElementById('btn-ru').classList.toggle('on', l==='ru');
+  document.documentElement.lang = l;
+  render();
+}
+
+function render(){
+  const d = KT[lang];
+  document.title = d.title;
+  document.getElementById('nav-back').textContent = d.back;
+  document.getElementById('k-h1').innerHTML = d.h1;
+  document.getElementById('k-sub').textContent = d.sub;
+  document.getElementById('k-tg-label').textContent = d.tgLabel;
+  document.getElementById('k-tg-note').textContent = d.tgNote;
+  document.getElementById('k-email-label').textContent = d.emailLabel;
+  document.getElementById('k-email-ph').textContent = d.emailPh;
+  document.getElementById('k-email-note').textContent = d.emailNote;
+}
+
+setL(lang);
+</script>
+</body>
+</html>

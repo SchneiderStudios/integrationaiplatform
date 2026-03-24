@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SchneiderStudios – KI-Kurs</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f5f5f7;--white:#fff;--ink:#1d1d1f;--deep:#0a0a0a;
+  --edge:#d2d2d7;--dim:#6e6e73;--blue:#0071e3;--blue2:#0077ed;
+  --green:#34c759;--orange:#ff9500;--red:#ff3b30;--purple:#af52de;
+  --serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif;
+  --sh:0 2px 14px rgba(0,0,0,.07);--sh2:0 10px 36px rgba(0,0,0,.12);
+}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);min-height:100vh;}
+
+/* NAV */
+.nav{height:52px;background:rgba(245,245,247,.92);backdrop-filter:saturate(200%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:90;}
+.nav-logo{font-family:var(--serif);font-size:15px;color:var(--ink);}
+.nav-logo em{color:var(--blue);font-style:normal;}
+.nav-tabs{display:flex;gap:2px;}
+.ntab{padding:6px 12px;border-radius:8px;border:none;background:transparent;color:var(--dim);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.ntab.on{background:rgba(0,113,227,.1);color:var(--blue);}
+.nav-r{display:flex;align-items:center;gap:8px;}
+.lsw{display:flex;background:var(--white);border-radius:99px;padding:2px;border:1px solid var(--edge);}
+.lb{font-size:11px;font-weight:700;padding:4px 11px;border-radius:99px;background:none;border:none;cursor:pointer;color:var(--dim);font-family:var(--sans);transition:all .2s;}
+.lb.on{background:var(--blue);color:#fff;}
+.nav-ava{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;overflow:hidden;border:2px solid transparent;transition:all .2s;}
+.nav-ava:hover{border-color:var(--blue);}
+.nav-ava img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+/* PAGES */
+.pg{display:none;max-width:960px;margin:0 auto;padding:28px 18px 80px;}
+.pg.on{display:block;animation:fup .4s ease both;}
+@keyframes fup{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* HOME */
+.home-hero{background:var(--deep);border-radius:22px;padding:46px 42px;color:#fff;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:var(--sh2);}
+.home-hero::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,113,227,.17),transparent 65%);pointer-events:none;}
+.home-hero::after{content:'';position:absolute;bottom:-30%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(175,82,222,.1),transparent 65%);pointer-events:none;}
+.hh-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.38);margin-bottom:14px;position:relative;}
+.home-hero h1{font-family:var(--serif);font-size:clamp(26px,5vw,44px);font-weight:400;line-height:1.12;letter-spacing:-1px;margin-bottom:10px;position:relative;}
+.home-hero h1 em{font-style:italic;color:var(--blue);}
+.home-hero p{font-size:15px;opacity:.58;line-height:1.65;max-width:500px;position:relative;}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:20px;}
+.sc{background:var(--white);border-radius:15px;padding:16px;text-align:center;box-shadow:var(--sh);}
+.sc-v{font-family:var(--serif);font-size:30px;color:var(--blue);}
+.sc-l{font-size:12px;color:var(--dim);margin-top:2px;}
+.opbar{background:var(--white);border-radius:15px;padding:17px 20px;display:flex;align-items:center;gap:16px;margin-bottom:24px;box-shadow:var(--sh);}
+.op-i{flex:1;}
+.op-l{font-size:12px;color:var(--dim);font-weight:500;margin-bottom:7px;}
+.pbo{background:var(--edge);border-radius:99px;height:7px;overflow:hidden;}
+.pbi{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .7s cubic-bezier(.4,0,.2,1);}
+.op-p{font-family:var(--serif);font-size:21px;color:var(--blue);min-width:46px;text-align:right;flex-shrink:0;}
+.sec-l{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:13px;}
+
+/* MODULE CARDS */
+.mc{background:var(--white);border-radius:17px;overflow:hidden;margin-bottom:10px;box-shadow:var(--sh);transition:box-shadow .2s;}
+.mc:hover{box-shadow:var(--sh2);}
+.mc.done{box-shadow:0 2px 14px rgba(52,199,89,.15);}
+.mch{display:flex;align-items:center;gap:13px;padding:16px 18px;cursor:pointer;user-select:none;}
+.mn{width:37px;height:37px;border-radius:10px;font-family:var(--serif);font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mc-info{flex:1;min-width:0;}
+.mc-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
+.mc-t{font-size:14px;font-weight:600;line-height:1.3;}
+.mc-mini{display:flex;align-items:center;gap:7px;margin-top:4px;}
+.mb2{width:88px;height:3px;background:var(--edge);border-radius:99px;overflow:hidden;}
+.mf2{height:100%;border-radius:99px;transition:width .4s;}
+.mt2{font-size:11px;color:var(--dim);}
+.mc-chev{font-size:15px;color:var(--dim);transition:transform .3s;flex-shrink:0;}
+.mc.open .mc-chev{transform:rotate(180deg);}
+.mc-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+.mc-body.open{max-height:900px;}
+.mc-bi{border-top:1px solid var(--bg);padding:10px 16px 13px;}
+.lr{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:10px;margin-bottom:4px;cursor:pointer;transition:background .15s;}
+.lr:last-child{margin-bottom:0;}
+.lr:hover{background:var(--bg);}
+.lr.done{background:#f0fdf4;}
+.lchk{width:21px;height:21px;border-radius:50%;border:1.5px solid var(--edge);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;flex-shrink:0;transition:all .2s;}
+.lr.done .lchk{background:var(--green);border-color:var(--green);color:#fff;}
+.lic{font-size:17px;flex-shrink:0;}
+.lt2{flex:1;font-size:13px;font-weight:500;}
+.lr.done .lt2{color:var(--dim);}
+.ld{font-size:11px;color:var(--dim);flex-shrink:0;}
+.lpb{width:26px;height:26px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;flex-shrink:0;transition:all .2s;}
+.lr:hover .lpb{transform:scale(1.1);}
+.lr.done .lpb{background:var(--green);}
+
+/* PLAYER */
+.player{display:none;}
+.player.on{display:block;}
+.pw{max-width:820px;margin:0 auto;padding:0 18px 80px;}
+.ptop{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--edge);margin-bottom:18px;}
+.pt-mod{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;}
+.pt-ttl{font-family:var(--serif);font-size:17px;font-weight:400;}
+.pt-dur{font-size:13px;color:var(--dim);}
+.bbk{display:flex;align-items:center;gap:5px;padding:7px 15px;border-radius:99px;border:1.5px solid var(--edge);background:var(--white);font-size:13px;font-weight:500;cursor:pointer;color:var(--dim);font-family:var(--sans);transition:all .2s;}
+.bbk:hover{border-color:var(--blue);color:var(--blue);}
+.spb{height:3px;background:var(--edge);border-radius:99px;margin-bottom:18px;overflow:hidden;}
+.spbf{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:99px;transition:width .4s ease;}
+
+/* SLIDES */
+.slide{display:none;background:var(--white);border-radius:20px;overflow:hidden;min-height:440px;flex-direction:column;animation:slin .35s ease both;box-shadow:var(--sh);}
+.slide.on{display:flex;}
+.slide.bk{animation:slbk .35s ease both;}
+@keyframes slin{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+@keyframes slbk{from{opacity:0;transform:translateX(-30px);}to{opacity:1;transform:translateX(0);}}
+.sv{height:200px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.sb{padding:24px 28px 30px;flex:1;}
+.s-lb{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;opacity:.6;}
+.s-ttl{font-family:var(--serif);font-size:clamp(18px,3vw,24px);font-weight:400;line-height:1.2;margin-bottom:12px;}
+.s-tx{font-size:15px;line-height:1.8;color:#3a3a3c;}
+.s-tx strong{color:var(--blue);}
+.hl{background:#eff6ff;border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 9px 9px 0;margin:10px 0;font-size:14px;line-height:1.68;}
+.hl.g{background:#f0fdf4;border-color:var(--green);}
+.hl.o{background:#fff8f0;border-color:var(--orange);}
+.hl.r{background:#fff0f0;border-color:var(--red);}
+.ex{background:#fff8f0;border:1.5px solid #f5c28a;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.7;}
+.ex .xl{font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.ex.g{background:#f0fdf4;border-color:#86efac;}.ex.g .xl{color:var(--green);}
+.ex.de{background:#e8f4fd;border-color:#90c8f0;}.ex.de .xl{color:var(--blue);}
+.gb{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.gbc{padding:10px 12px;border-radius:9px;border:1.5px solid var(--edge);font-size:13px;line-height:1.5;}
+.gbc.g{background:#f0fdf4;border-color:#86efac;}.gbc.b{background:#fff0f0;border-color:#fca5a5;}
+.gbc-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.gbc.g .gbc-l{color:var(--green);}.gbc.b .gbc-l{color:var(--red);}
+.dcard{background:#e8f4fd;border:1.5px solid #90c8f0;border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px;margin:6px 0;font-size:13px;line-height:1.5;}
+.dcard-ico{font-size:22px;flex-shrink:0;}
+.dcard-name{font-weight:700;font-size:11px;color:var(--blue);margin-bottom:2px;}
+
+/* CONTROLS */
+.sctrl{display:flex;align-items:center;justify-content:space-between;margin:14px 0 20px;}
+.dots{display:flex;gap:5px;align-items:center;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--edge);cursor:pointer;transition:all .25s;}
+.dot.on{width:20px;border-radius:4px;background:var(--blue);}
+.dot.done{background:var(--green);}
+.bn{display:flex;align-items:center;gap:5px;padding:9px 17px;border-radius:99px;border:1.5px solid var(--edge);background:var(--white);font-size:13px;font-weight:500;cursor:pointer;color:var(--ink);font-family:var(--sans);transition:all .2s;}
+.bn:hover{border-color:var(--blue);color:var(--blue);}
+.bn.p{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 4px 14px rgba(0,113,227,.3);}
+.bn.p:hover{background:var(--blue2);}
+.bn:disabled{opacity:.3;cursor:not-allowed;}
+.done-box{background:var(--deep);border-radius:18px;padding:30px;text-align:center;display:none;animation:fup .5s ease;color:#fff;}
+.done-box h3{font-family:var(--serif);font-size:24px;font-weight:400;margin-bottom:8px;}
+.done-box p{opacity:.6;margin-bottom:22px;font-size:15px;}
+.da{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.bw{padding:11px 22px;border-radius:99px;border:none;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.bw.gr{background:var(--green);color:#fff;}
+.bw.nl{background:rgba(255,255,255,.12);color:#fff;}
+
+/* QUIZ */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:200;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .3s;}
+.overlay.on{opacity:1;pointer-events:all;}
+.qbox{background:var(--white);border-radius:20px;width:100%;max-width:520px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.2);transform:scale(.95) translateY(14px);transition:transform .3s;}
+.overlay.on .qbox{transform:scale(1) translateY(0);}
+.qt{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.qmod{font-size:12px;color:var(--dim);font-weight:700;}
+.qcl{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--edge);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);transition:all .2s;}
+.qcl:hover{background:var(--edge);}
+.qst{font-size:12px;color:var(--dim);margin-bottom:12px;}
+.qdts{display:flex;gap:5px;margin-bottom:18px;}
+.qdot{height:3px;flex:1;border-radius:99px;background:var(--edge);transition:background .3s;}
+.qdot.done{background:var(--green);}.qdot.on{background:var(--blue);}
+.qq{font-family:var(--serif);font-size:19px;font-weight:400;line-height:1.35;margin-bottom:17px;}
+.qos{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.qo{padding:12px 15px;border-radius:10px;border:1.5px solid var(--edge);cursor:pointer;font-size:14px;line-height:1.4;text-align:left;background:var(--bg);transition:all .2s;font-family:var(--sans);}
+.qo:hover:not(:disabled){border-color:var(--blue);background:#eff6ff;}
+.qo.ok{border-color:var(--green);background:#f0fdf4;color:#15803d;font-weight:600;}
+.qo.no{border-color:var(--red);background:#fff0f0;color:var(--red);}
+.qo:disabled{cursor:default;}
+.qfb{font-size:14px;padding:10px 14px;border-radius:9px;margin-bottom:13px;display:none;line-height:1.6;}
+.qfb.on{display:block;}.qfb.ok{background:#f0fdf4;color:#15803d;}.qfb.no{background:#fff0f0;color:var(--red);}
+.qnxt{width:100%;padding:13px;border-radius:11px;border:none;background:var(--blue);color:#fff;font-family:var(--serif);font-size:17px;font-weight:400;cursor:pointer;display:none;transition:all .2s;box-shadow:0 4px 14px rgba(0,113,227,.3);}
+.qnxt.on{display:block;}.qnxt:hover{background:var(--blue2);}
+
+/* PROGRESS */
+.prg-card{background:var(--white);border-radius:17px;padding:22px;box-shadow:var(--sh);margin-bottom:12px;}
+.prg-card h3{font-family:var(--serif);font-size:19px;font-weight:400;margin-bottom:17px;}
+.mpr{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--bg);}
+.mpr:last-child{border-bottom:none;}
+.mpr-n{width:33px;height:33px;border-radius:9px;font-family:var(--serif);font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mpr-info{flex:1;}
+.mpr-nm{font-size:13px;font-weight:600;margin-bottom:5px;}
+.mpr-b{background:var(--edge);border-radius:99px;height:5px;overflow:hidden;}
+.mpr-f{height:100%;border-radius:99px;transition:width .6s;}
+.mpr-pct{font-size:13px;font-weight:700;min-width:33px;text-align:right;flex-shrink:0;}
+.lmini{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;margin-bottom:5px;font-size:13px;}
+.lmini.w{background:#f0fdf4;}
+
+/* PROFILE */
+.prof-c{background:var(--white);border-radius:17px;padding:24px;box-shadow:var(--sh);margin-bottom:12px;}
+.pr{display:flex;align-items:center;gap:18px;margin-bottom:22px;}
+.pw2{position:relative;width:68px;height:68px;flex-shrink:0;}
+.pav{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;border:3px solid var(--edge);}
+.pav img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.pae{position:absolute;bottom:0;right:0;width:22px;height:22px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;border:2px solid #fff;transition:background .2s;}
+.pae:hover{background:var(--blue2);}
+.pnd h2{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:3px;}
+.pnd p{font-size:14px;color:var(--dim);}
+.flds{display:flex;flex-direction:column;gap:12px;}
+.fl{display:flex;flex-direction:column;gap:5px;}
+.fl label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);}
+.fi2{padding:11px 13px;border-radius:10px;border:1.5px solid var(--edge);background:var(--bg);font-size:14px;color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .2s;}
+.fi2:focus{border-color:var(--blue);}
+.sbtn{margin-top:4px;padding:10px 22px;border-radius:99px;border:none;background:var(--blue);color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;align-self:flex-start;transition:all .2s;box-shadow:0 4px 12px rgba(0,113,227,.3);}
+.sbtn:hover{background:var(--blue2);}
+.ach{background:var(--white);border-radius:17px;padding:22px;box-shadow:var(--sh);}
+.ach h3{font-family:var(--serif);font-size:19px;font-weight:400;margin-bottom:15px;}
+.bgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
+.bg{background:var(--bg);border:1.5px solid var(--edge);border-radius:12px;padding:12px 8px;text-align:center;transition:all .2s;}
+.bg.e{border-color:#fbbf24;background:#fffbeb;}
+.bi{font-size:24px;margin-bottom:5px;filter:grayscale(1);opacity:.35;}
+.bg.e .bi{filter:none;opacity:1;}
+.bn2{font-size:10px;font-weight:600;color:var(--dim);line-height:1.3;}
+.bg.e .bn2{color:var(--ink);}
+
+/* VISUALS */
+.vg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.ve{font-size:68px;}
+.v-chat{flex-direction:column;gap:8px;padding:14px 20px;}
+.cb{max-width:200px;padding:8px 12px;border-radius:12px;font-size:12px;line-height:1.5;font-family:var(--sans);}
+.cb.u{background:var(--blue);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+.cb.a{background:#fff;border:1.5px solid #e5e5ea;border-bottom-left-radius:4px;}
+.v-stp{gap:0;padding:8px 12px;}
+.si2{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 5px;text-align:center;}
+.si2-i{font-size:22px;}.si2-l{font-size:10px;font-weight:600;max-width:54px;line-height:1.3;}
+.sa{font-size:16px;color:var(--orange);padding:0 2px;margin-top:-4px;}
+.v-cmp{gap:7px;padding:11px;}
+.cc{flex:1;background:#fff;border-radius:9px;padding:10px;border:1.5px solid var(--edge);text-align:center;font-size:11px;line-height:1.5;}
+.cc-i{font-size:24px;margin-bottom:4px;}.cc-n{font-family:var(--serif);font-size:10px;margin-bottom:3px;}
+.v-ltr{padding:14px;justify-content:center;}
+.lm{background:#fff;border-radius:9px;padding:13px;width:230px;box-shadow:var(--sh);font-size:11px;line-height:1.7;}
+.lm-f{font-weight:700;color:var(--purple);margin-bottom:5px;}
+.v-dc{padding:14px;flex-direction:column;gap:8px;}
+
+/* LOCK SCREEN */
+.lock-screen{display:none;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px 24px;background:var(--bg);}
+.lock-screen.on{display:flex;animation:fup .5s ease both;}
+.lock-ico{font-size:56px;margin-bottom:24px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.12));}
+.lock-h{font-family:var(--serif);font-size:clamp(24px,5vw,38px);font-weight:400;letter-spacing:-1px;color:var(--ink);margin-bottom:12px;max-width:480px;}
+.lock-p{font-size:16px;color:var(--dim);line-height:1.65;max-width:400px;margin-bottom:36px;}
+.lock-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.lock-btn-p{background:var(--blue);color:#fff;border:none;border-radius:99px;padding:14px 32px;font-size:16px;font-weight:600;cursor:pointer;font-family:var(--sans);box-shadow:0 4px 18px rgba(0,113,227,.3);transition:all .2s;}
+.lock-btn-p:hover{background:var(--blue2);}
+.lock-btn-g{background:transparent;color:var(--blue);border:1.5px solid rgba(0,113,227,.3);border-radius:99px;padding:13px 30px;font-size:16px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .2s;}
+.lock-btn-g:hover{border-color:var(--blue);}
+/* test bar */
+.test-bar{position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;z-index:400;font-family:var(--sans);}
+.test-bar span{opacity:.6;}
+.tb-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 11px;color:#fff;font-size:12px;cursor:pointer;font-family:var(--sans);transition:background .2s;}
+.tb-btn:hover{background:rgba(255,255,255,.22);}
+.tb-btn.grant{border-color:#34c759;color:#34c759;}
+.tb-btn.revoke{border-color:#ff3b30;color:#ff3b30;}
+
+@media(max-width:600px){
+  .gb{grid-template-columns:1fr;}.sv{height:150px;}
+  .stats3{grid-template-columns:repeat(3,1fr);}
+  .ntab{padding:5px 7px;font-size:11px;}
+  .bgs{grid-template-columns:repeat(auto-fill,minmax(86px,1fr));}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-logo">Schneider<em>Studios</em></div>
+  <div class="nav-tabs">
+    <button class="ntab on" onclick="goP('home',this)" id="nt-home"></button>
+    <button class="ntab" onclick="goP('prog',this)" id="nt-prog"></button>
+    <button class="ntab" onclick="goP('prof',this)" id="nt-prof"></button>
+  </div>
+  <div class="nav-r">
+    <div class="lsw">
+      <button class="lb on" id="bde" onclick="sL('de')">DE</button>
+      <button class="lb" id="bru" onclick="sL('ru')">RU</button>
+    </div>
+    <div class="nav-ava" id="nav-ava" onclick="goP('prof',document.querySelectorAll('.ntab')[2])">😊</div>
+  </div>
+</div>
+
+<div class="pg on" id="pg-home">
+  <div class="home-hero">
+    <div class="hh-tag">SchneiderStudios · 2025</div>
+    <h1 id="hh1"></h1>
+    <p id="hh2"></p>
+  </div>
+  <div class="stats3">
+    <div class="sc"><div class="sc-v" id="sv-w">0</div><div class="sc-l" id="sc-done"></div></div>
+    <div class="sc"><div class="sc-v">16</div><div class="sc-l" id="sc-tot"></div></div>
+    <div class="sc"><div class="sc-v" id="sv-q">0</div><div class="sc-l" id="sc-qz"></div></div>
+  </div>
+  <div class="opbar">
+    <div class="op-i"><div class="op-l" id="op-lbl"></div><div class="pbo"><div class="pbi" id="pbar" style="width:0%"></div></div></div>
+    <div class="op-p" id="ppct">0%</div>
+  </div>
+  <div class="sec-l" id="sec-mods-l"></div>
+  <div id="mod-list"></div>
+</div>
+
+<div class="player" id="player">
+  <div class="pw">
+    <div class="ptop">
+      <div><div class="pt-mod" id="pt-mod"></div><div class="pt-ttl" id="pt-ttl"></div></div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="pt-dur" id="pt-dur"></div>
+        <button class="bbk" id="btn-back" onclick="backHome()"></button>
+      </div>
+    </div>
+    <div class="spb"><div class="spbf" id="spbf"></div></div>
+    <div id="sw"></div>
+    <div class="sctrl" id="sctrl">
+      <button class="bn" id="btnprev" onclick="prevS()"></button>
+      <div class="dots" id="dots"></div>
+      <button class="bn p" id="btnnext" onclick="nextS()"></button>
+    </div>
+    <div class="done-box" id="done-box">
+      <h3 id="db-h"></h3>
+      <p id="db-p"></p>
+      <div class="da">
+        <button class="bw gr" id="db-quiz" onclick="openQuiz()"></button>
+        <button class="bw nl" id="db-back" onclick="backHome()"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pg" id="pg-prog">
+  <div class="prg-card"><h3 id="prg-h1"></h3><div id="prg-mods"></div></div>
+  <div class="prg-card"><h3 id="prg-h2"></h3><div id="prg-les"></div></div>
+</div>
+
+<div class="pg" id="pg-prof">
+  <div class="prof-c">
+    <div class="pr">
+      <div class="pw2">
+        <div class="pav" id="pav">😊</div>
+        <label class="pae" for="avi">✏️</label>
+        <input type="file" id="avi" accept="image/*" onchange="hdlAv(event)" style="display:none">
+      </div>
+      <div class="pnd"><h2 id="pn-d"></h2><p id="ps-d"></p></div>
+    </div>
+    <div class="flds">
+      <div class="fl"><label id="fl-name"></label><input class="fi2" id="f-name" oninput="liveN()"></div>
+      <div class="fl"><label id="fl-city"></label><input class="fi2" id="f-city"></div>
+      <div class="fl"><label id="fl-goal"></label><input class="fi2" id="f-goal"></div>
+      <button class="sbtn" id="sbtn" onclick="saveP()"></button>
+    </div>
+  </div>
+  <div class="ach"><h3 id="ach-h"></h3><div class="bgs" id="bgs"></div></div>
+</div>
+
+<div class="overlay" id="qov" onclick="oclose(event)">
+  <div class="qbox">
+    <div class="qt"><div class="qmod" id="qmod"></div><div class="qcl" onclick="closeQ()">✕</div></div>
+    <div class="qst" id="qst"></div>
+    <div class="qdts" id="qdts"></div>
+    <div class="qq" id="qq"></div>
+    <div class="qos" id="qos"></div>
+    <div class="qfb" id="qfb"></div>
+    <button class="qnxt" id="qnxt" onclick="nextQ()"></button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── ACCESS CHECK ──
+// NOTE: localStorage 'access' is a temporary client-side placeholder.
+// It does NOT provide real content protection — a determined user can bypass it.
+// Replace with server-side session/token verification after backend integration.
+(function(){
+  if(localStorage.getItem('access') !== 'true'){
+    const lang = localStorage.getItem('ss_lang') || 'de';
+    const isRu = lang === 'ru';
+    document.body.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:'DM Sans',sans-serif;text-align:center;background:#f5f5f7;padding:24px;">
+        <div style="background:#fff;border-radius:24px;padding:52px 44px;max-width:440px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.1);">
+          <div style="font-size:48px;margin-bottom:20px;">🔒</div>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.5px;margin-bottom:12px;color:#1d1d1f;">
+            ${isRu ? 'Доступ закрыт' : 'Zugang erforderlich'}
+          </h2>
+          <p style="font-size:16px;color:#6e6e73;line-height:1.6;margin-bottom:32px;">
+            ${isRu
+              ? 'Сначала получите бесплатный доступ на главной странице.'
+              : 'Bitte fordern Sie zuerst den kostenlosen Zugang an.'}
+          </p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="index.html" style="padding:12px 24px;border-radius:99px;border:1.5px solid #d2d2d7;color:#6e6e73;text-decoration:none;font-size:14px;font-weight:600;">
+              ${isRu ? '← На главную' : '← Zurück zur Startseite'}
+            </a>
+            <a href="index.html" style="padding:12px 24px;border-radius:99px;background:#0071e3;color:#fff;text-decoration:none;font-size:14px;font-weight:600;">
+              ${isRu ? 'Получить бесплатный доступ →' : 'Kostenlosen Zugang anfordern →'}
+            </a>
+          </div>
+        </div>
+      </div>`;
+    throw new Error('Access denied');
+  }
+})();
+
+// ══════════════════════════════════════
+// TRANSLATIONS (UI strings)
+// ══════════════════════════════════════
+const UI = {
+  de:{
+    nt:['🏠 Kurs','📊 Fortschritt','👤 Profil'],
+    hh1:'Willkommen! 👋<br><em>ChatGPT für Deutschland</em>',
+    hh2:'Jobcenter, Finanzamt, Krankenkasse – meistern Sie die deutsche Bürokratie mit KI.',
+    stats:['abgeschlossen','Lektionen','Quizzes'],
+    prog:'Gesamtfortschritt',
+    mods:'Kursmodule',
+    back:'← Alle Lektionen',
+    prev:'← Zurück', next:'Weiter →', fin:'✓ Lektion beenden',
+    db:['🎉 Lektion abgeschlossen!','Testen Sie jetzt Ihr Wissen.','🧠 Quiz starten','← Zurück'],
+    prg:['Fortschritt nach Modulen','Alle Lektionen'],
+    prof:['Ihr Name','Profil ausfüllen 👇','Ihr Name','Stadt','Lernziel','Speichern'],
+    ach:'🏆 Abzeichen',
+    qlab:(m,i,n)=>`${m} – Frage ${i} von ${n}`,
+    qnext:'Nächste Frage →', qdone:'✓ Quiz beenden',
+    ok:'✅ Richtig! ', no:'❌ Nicht ganz. ',
+    toast:{done:'✅ Lektion abgeschlossen!',quiz:'🧠 Quiz bestanden!',saved:'💾 Profil gespeichert!'},
+    badges:[
+      {ic:'🚀',nm:'Erste Lektion'},{ic:'📚',nm:'Modul 1'},{ic:'💬',nm:'Modul 2'},
+      {ic:'🇩🇪',nm:'Modul 3'},{ic:'💼',nm:'Modul 4'},{ic:'🧠',nm:'Erstes Quiz'},
+      {ic:'🏅',nm:'Alle Quizzes'},{ic:'🎓',nm:'Kurs bestanden'}
+    ],
+    mmod:[
+      {tag:'Modul 01',em:'🤖',ttl:'Was ist ChatGPT & KI – und wie nutze ich es?'},
+      {tag:'Modul 02',em:'💬',ttl:'Effektive Prompts für die Praxis'},
+      {tag:'Modul 03',em:'🇩🇪',ttl:'KI & deutsche Bürokratie – konkret & praktisch'},
+      {tag:'Modul 04',em:'💼',ttl:'KI für Arbeit, Business & Alltag in Deutschland'},
+    ]
+  },
+  ru:{
+    nt:['🏠 Курс','📊 Прогресс','👤 Профиль'],
+    hh1:'Добро пожаловать! 👋<br><em>ChatGPT для Германии</em>',
+    hh2:'Jobcenter, Finanzamt, Krankenkasse — справляйтесь с немецкой бюрократией с помощью ИИ.',
+    stats:['пройдено','уроков','квизов'],
+    prog:'Общий прогресс',
+    mods:'Модули курса',
+    back:'← Все уроки',
+    prev:'← Назад', next:'Далее →', fin:'✓ Завершить урок',
+    db:['🎉 Урок пройден!','Проверьте знания в квизе!','🧠 Пройти квиз','← К урокам'],
+    prg:['Прогресс по модулям','Все уроки'],
+    prof:['Ваше имя','Заполните профиль 👇','Ваше имя','Город','Цель обучения','Сохранить'],
+    ach:'🏆 Достижения',
+    qlab:(m,i,n)=>`${m} — Вопрос ${i} из ${n}`,
+    qnext:'Следующий →', qdone:'✓ Завершить квиз',
+    ok:'✅ Правильно! ', no:'❌ Не совсем. ',
+    toast:{done:'✅ Урок пройден!',quiz:'🧠 Квиз пройден!',saved:'💾 Профиль сохранён!'},
+    badges:[
+      {ic:'🚀',nm:'Первый урок'},{ic:'📚',nm:'Модуль 1'},{ic:'💬',nm:'Модуль 2'},
+      {ic:'🇩🇪',nm:'Модуль 3'},{ic:'💼',nm:'Модуль 4'},{ic:'🧠',nm:'Первый квиз'},
+      {ic:'🏅',nm:'Все квизы'},{ic:'🎓',nm:'Курс пройден'}
+    ],
+    mmod:[
+      {tag:'Модуль 01',em:'🤖',ttl:'Что такое ChatGPT и ИИ — и как использовать?'},
+      {tag:'Модуль 02',em:'💬',ttl:'Эффективные промпты для практики'},
+      {tag:'Модуль 03',em:'🇩🇪',ttl:'ИИ и немецкая бюрократия — конкретно и практично'},
+      {tag:'Модуль 04',em:'💼',ttl:'ИИ для работы, бизнеса и жизни в Германии'},
+    ]
+  }
+};
+
+// ══════════════════════════════════════
+// LESSON DATABASE  (16 lessons × 2 languages)
+// Each lesson: {m, ic, t:{de,ru}, d, sl:[slides], qz:[quiz items]}
+// Slide:  {vis, bg, lb:{de,ru}, ttl:{de,ru}, tx:{de,ru}}
+// Quiz:   {q:{de,ru}, os:{de,ru}, a, h:{de,ru}}
+// ══════════════════════════════════════
+const LES = [
+
+/* ═══ MOD 0 ═══ */
+{m:0,ic:'🤖',t:{de:'Was ist ChatGPT & KI – einfach erklärt',ru:'Что такое ChatGPT и ИИ — простое объяснение'},d:'8 Min',
+ sl:[
+  {vis:'em:🧠',bg:'#dbeafe,#ede9fe',
+   lb:{de:'Grundlagen',ru:'Основы'},
+   ttl:{de:'ChatGPT – Ihr immer verfügbarer Assistent',ru:'ChatGPT — ваш всегда доступный помощник'},
+   tx:{de:`ChatGPT ist ein KI-Programm, das <strong>Fragen beantwortet, Briefe schreibt und übersetzt</strong> – rund um die Uhr, auf Deutsch, kostenlos.<div class="hl">💡 Stellen Sie sich vor: Ein Assistent, der nie schläft, nie urteilt und Ihnen mit Jobcenter-Briefen, Finanzamt-Fragen und Mietverträgen helfen kann.</div>`,
+       ru:`ChatGPT — это программа ИИ, которая <strong>отвечает на вопросы, пишет письма и переводит</strong> — круглосуточно, на немецком, бесплатно.<div class="hl">💡 Представьте: помощник, который никогда не спит, не осуждает и помогает с письмами в Jobcenter, вопросами в Finanzamt и договорами аренды.</div>`}},
+  {vis:'cmp:🤖,ChatGPT,OpenAI:🧩,Claude,Anthropic:💎,Gemini,Google',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Welches wählen?',ru:'Какой выбрать?'},
+   ttl:{de:'ChatGPT, Claude oder Gemini?',ru:'ChatGPT, Claude или Gemini?'},
+   tx:{de:`Alle drei sind kostenlos nutzbar:<div class="hl"><strong>ChatGPT</strong> (chat.openai.com) – beliebteste Wahl, sehr gut auf Deutsch<br><strong>Claude</strong> (claude.ai) – ideal für lange Briefe und Dokumente<br><strong>Gemini</strong> (gemini.google.com) – von Google, kennt aktuelle Infos</div><div class="ex de"><div class="xl">🇩🇪 Empfehlung</div>Für den Start: ChatGPT. Kostenlos, intuitiv, ausgezeichnet auf Deutsch.</div>`,
+       ru:`Все три доступны бесплатно:<div class="hl"><strong>ChatGPT</strong> (chat.openai.com) — самый популярный, отличный немецкий<br><strong>Claude</strong> (claude.ai) — идеален для длинных писем и документов<br><strong>Gemini</strong> (gemini.google.com) — от Google, знает актуальную информацию</div><div class="ex de"><div class="xl">🇩🇪 Рекомендация</div>Для старта: ChatGPT. Бесплатно, интуитивно, отличный немецкий.</div>`}},
+  {vis:'steps:📱,Browser:→:🔍,chat.openai.com:→:✅,Registrieren',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Registrierung',ru:'Регистрация'},
+   ttl:{de:'In 5 Minuten angemeldet',ru:'Зарегистрироваться за 5 минут'},
+   tx:{de:`<div class="hl">1. Browser öffnen → <strong>chat.openai.com</strong> eingeben<br>2. „Sign up" klicken<br>3. E-Mail und Passwort eingeben<br>4. Bestätigungs-E-Mail anklicken – fertig!</div><div class="ex de"><div class="xl">🇩🇪 Wichtig: DSGVO-Hinweis</div>Geben Sie keine echten Personalien, Steuernummern oder Krankenkassendaten ein. Nutzen Sie ChatGPT für allgemeine Fragen und Muster-Briefe!</div>`,
+       ru:`<div class="hl">1. Открыть браузер → ввести <strong>chat.openai.com</strong><br>2. Нажать «Sign up»<br>3. Ввести email и пароль<br>4. Подтвердить email — готово!</div><div class="ex de"><div class="xl">🇩🇪 Важно: DSGVO</div>Не вводите реальные личные данные, налоговые номера или данные страховки. Используйте ChatGPT для общих вопросов и шаблонов писем!</div>`}},
+  {vis:'chat:Kannst du mir mit dem Jobcenter helfen?:Natürlich! Beschreiben Sie die Situation – ich helfe Ihnen, den richtigen Brief zu schreiben.',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Erste Schritte',ru:'Первые шаги'},
+   ttl:{de:'Ihr erstes Gespräch – so geht es',ru:'Ваш первый разговор — вот как это работает'},
+   tx:{de:`Das Textfeld ist wie ein Messenger. Schreiben Sie auf Deutsch, drücken Sie Enter – fertig.<div class="hl">🗣️ Tippfehler? Kein Problem – ChatGPT versteht Sie trotzdem<br>🔄 Antwort unpassend? Schreiben Sie „Erkläre einfacher"<br>📝 Probieren Sie: „Hilf mir mit einem Brief an das Jobcenter"</div>`,
+       ru:`Поле для текста — как мессенджер. Пишете на немецком, нажимаете Enter — готово.<div class="hl">🗣️ Опечатки? Не проблема — ChatGPT всё равно поймёт<br>🔄 Ответ не подходит? Напишите «Erkläre einfacher»<br>📝 Попробуйте: «Hilf mir mit einem Brief an das Jobcenter»</div>`}},
+  {vis:'em:✅',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Sie sind bereit!',ru:'Вы готовы!'},
+   ttl:{de:'Sie haben alles, was Sie brauchen',ru:'У вас есть всё, что нужно'},
+   tx:{de:`<div class="hl g">✅ ChatGPT ist kostenlos und sofort nutzbar<br><br>✅ Auf Deutsch schreiben – kein Englisch nötig<br><br>✅ Fehler machen ist erlaubt – KI versteht Sie<br><br>🎯 Nächste Lektion: Wie Sie die richtigen Fragen stellen!</div>`,
+       ru:`<div class="hl g">✅ ChatGPT бесплатный и доступен сразу<br><br>✅ Писать на немецком — английский не нужен<br><br>✅ Ошибки допустимы — ИИ всё равно поймёт<br><br>🎯 Следующий урок: как задавать правильные вопросы!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was kann ChatGPT für Sie tun?',ru:'Что может ChatGPT делать для вас?'},
+   os:{de:['Nur auf Englisch antworten','Fragen beantworten, Briefe schreiben, übersetzen – auf Deutsch','Nur für technische Experten','Behörden anrufen'],
+       ru:['Отвечать только на английском','Отвечать на вопросы, писать письма, переводить — на немецком','Только для технических экспертов','Звонить в ведомства']},
+   a:1,h:{de:'ChatGPT beantwortet Fragen, schreibt Briefe und übersetzt – alles auf Deutsch.',ru:'ChatGPT отвечает на вопросы, пишет письма и переводит — всё на немецком.'}},
+  {q:{de:'Was soll man laut DSGVO NICHT in ChatGPT eingeben?',ru:'Что по DSGVO НЕЛЬЗЯ вводить в ChatGPT?'},
+   os:{de:['Allgemeine Fragen auf Deutsch','Echte Steuernummern, Bankdaten und persönliche Daten','Muster-Briefe ohne Namen','Fragen zu Behörden'],
+       ru:['Общие вопросы на немецком','Настоящие налоговые номера, банковские данные и личные данные','Шаблоны писем без имён','Вопросы о ведомствах']},
+   a:1,h:{de:'Keine sensiblen Daten (Steuernummer, Bankdaten) in KI-Tools eingeben – DSGVO!',ru:'Не вводить чувствительные данные (налоговый номер, банковские данные) в ИИ — DSGVO!'}},
+  {q:{de:'Welche KI empfiehlt sich für Anfänger zum Start?',ru:'Какой ИИ рекомендуется для начинающих?'},
+   os:{de:['Nur kostenpflichtige Tools','ChatGPT – kostenlos, einfach, sehr gut auf Deutsch','Nur Gemini','KI ist für Anfänger zu schwierig'],
+       ru:['Только платные инструменты','ChatGPT — бесплатно, просто, отлично на немецком','Только Gemini','ИИ слишком сложен для новичков']},
+   a:1,h:{de:'ChatGPT eignet sich ideal für Einsteiger – kostenlos, intuitiv, ausgezeichnet auf Deutsch.',ru:'ChatGPT идеально для новичков — бесплатно, интуитивно, отличный немецкий.'}}
+ ]
+},
+
+{m:0,ic:'🛡️',t:{de:'Datenschutz & DSGVO – KI sicher nutzen',ru:'Защита данных и DSGVO — безопасное использование ИИ'},d:'7 Min',
+ sl:[
+  {vis:'em:🛡️',bg:'#fef2f2,#fecaca',
+   lb:{de:'DSGVO',ru:'DSGVO'},
+   ttl:{de:'Was Sie in Deutschland beachten müssen',ru:'Что важно соблюдать в Германии'},
+   tx:{de:`Die DSGVO schützt Ihre Daten. Beim Einsatz von KI gilt:<div class="gb"><div class="gbc b"><div class="gbc-l">❌ Niemals eingeben</div>Steuer-ID, Krankenversicherungsnummer, Kontonummer, vollständige Adresse, Passwörter</div><div class="gbc g"><div class="gbc-l">✅ Sicher eingeben</div>Allgemeine Situationsbeschreibung, Muster-Texte ohne Namen, Fragen zu Behörden-Prozessen</div></div>`,
+       ru:`DSGVO защищает ваши данные. При использовании ИИ:<div class="gb"><div class="gbc b"><div class="gbc-l">❌ Никогда не вводить</div>Steuer-ID, номер страховки, номер счёта, полный адрес, пароли</div><div class="gbc g"><div class="gbc-l">✅ Безопасно вводить</div>Общее описание ситуации, шаблоны без имён, вопросы о процессах в ведомствах</div></div>`}},
+  {vis:'em:💡',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Die Lösung',ru:'Решение'},
+   ttl:{de:'So nutzen Sie KI sicher für Behördenbriefe',ru:'Как безопасно использовать ИИ для официальных писем'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Richtige Vorgehensweise</div>1. ChatGPT erstellt einen Muster-Brief ohne echte Daten<br>2. Sie drucken ihn aus oder kopieren ihn<br>3. Sie tragen Ihre echten Daten ein<br>4. Sie schicken den Brief ab</div><div class="hl g">So nutzen Sie die volle Kraft von ChatGPT – sicher und DSGVO-konform!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Правильный подход</div>1. ChatGPT создаёт шаблон письма без реальных данных<br>2. Вы распечатываете или копируете его<br>3. Вписываете свои реальные данные<br>4. Отправляете письмо</div><div class="hl g">Так вы используете всю силу ChatGPT — безопасно и по DSGVO!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wie nutzt man ChatGPT sicher für Behördenbriefe?',ru:'Как безопасно использовать ChatGPT для официальных писем?'},
+   os:{de:['Alle persönlichen Daten eingeben','Muster-Brief ohne echte Daten erstellen lassen, dann selbst ergänzen','Gar nicht nutzen','Nur auf Englisch'],
+       ru:['Ввести все личные данные','Создать шаблон без реальных данных, потом самому дополнить','Вообще не использовать','Только на английском']},
+   a:1,h:{de:'Vorlage ohne echte Daten erstellen, dann persönliche Angaben selbst eintragen.',ru:'Создать шаблон без реальных данных, потом вписать личные данные самостоятельно.'}}
+ ]
+},
+
+{m:0,ic:'🔄',t:{de:'Das Gespräch weiterführen & verfeinern',ru:'Продолжать и уточнять разговор'},d:'8 Min',
+ sl:[
+  {vis:'em:💬',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Dialog',ru:'Диалог'},
+   ttl:{de:'ChatGPT erinnert sich – nutzen Sie das!',ru:'ChatGPT помнит — используйте это!'},
+   tx:{de:`Anders als Google merkt sich ChatGPT den Kontext. Sie müssen nicht wiederholen.<div class="hl">„Mache den Brief kürzer"<br>„Füge einen Hinweis auf die gesetzliche Frist hinzu"<br>„Ändere den Ton – bestimmter, aber höflich"<br>„Erkläre den Begriff 'Widerspruchsfrist' einfach"</div>`,
+       ru:`В отличие от Google, ChatGPT помнит контекст. Не нужно повторяться.<div class="hl">«Сделай письмо короче»<br>«Добавь ссылку на законный срок»<br>«Измени тон — настойчивее, но вежливо»<br>«Объясни термин "Widerspruchsfrist" просто»</div>`}},
+  {vis:'em:📁',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Vorlagen speichern',ru:'Сохранить шаблоны'},
+   ttl:{de:'Ihre persönliche Prompt-Bibliothek',ru:'Ваша личная библиотека промптов'},
+   tx:{de:`Speichern Sie bewährte Prompts in einem Dokument für die nächste Nutzung:<div class="ex de"><div class="xl">🇩🇪 Universelle Vorlage</div>„Schreibe einen formellen Brief auf Deutsch an [BEHÖRDE]. Situation: [BESCHREIBUNG]. Ich bitte um [ZIEL]. Ton: höflich und bestimmt. Keine echten Daten."</div><div class="hl">Kopieren → Variablen ersetzen → In 2 Minuten fertig!</div>`,
+       ru:`Сохраните проверенные промпты в документе для следующего использования:<div class="ex de"><div class="xl">🇩🇪 Универсальный шаблон</div>«Напиши официальное письмо на немецком в [ВЕДОМСТВО]. Ситуация: [ОПИСАНИЕ]. Прошу [ЦЕЛЬ]. Тон: вежливый и настойчивый. Без реальных данных.»</div><div class="hl">Скопировать → заменить переменные → за 2 минуты готово!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was ist der Vorteil gegenüber Google-Suche?',ru:'В чём преимущество перед поиском в Google?'},
+   os:{de:['Google ist schneller','ChatGPT erinnert sich an den Gesprächskontext – kein ständiges Wiederholen','ChatGPT ist nur für Experten','Kein Vorteil'],
+       ru:['Google быстрее','ChatGPT помнит контекст разговора — не нужно постоянно повторяться','ChatGPT только для экспертов','Нет преимущества']},
+   a:1,h:{de:'Im Gespräch erinnert sich ChatGPT an alles – Sie können direkt auf frühere Antworten aufbauen.',ru:'В разговоре ChatGPT помнит всё — можно сразу опираться на предыдущие ответы.'}}
+ ]
+},
+
+{m:0,ic:'🌍',t:{de:'Übersetzen & Texte korrigieren',ru:'Переводить и корректировать тексты'},d:'9 Min',
+ sl:[
+  {vis:'em:🌍',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Übersetzen',ru:'Перевод'},
+   ttl:{de:'Russisch fragen – Deutsch bekommen',ru:'Спросить по-русски — получить по-немецки'},
+   tx:{de:`Sie können ChatGPT auf Russisch fragen und eine Antwort auf Deutsch bekommen:<div class="ex de"><div class="xl">🇩🇪 Beispiel</div>Fragen Sie auf Russisch: „Мне нужно письмо в Jobcenter..."<br>ChatGPT antwortet auf Deutsch mit einem fertigen Brief!</div><div class="hl">Ideal für russischsprachige Menschen in Deutschland – Ihre Muttersprache für Ihren Alltag!</div>`,
+       ru:`Вы можете спрашивать ChatGPT по-русски и получать ответ на немецком:<div class="ex de"><div class="xl">🇩🇪 Пример</div>Спросите по-русски: «Мне нужно письмо в Jobcenter...»<br>ChatGPT ответит на немецком с готовым письмом!</div><div class="hl">Идеально для русскоязычных в Германии — ваш родной язык для вашего быта!</div>`}},
+  {vis:'em:✏️',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Text verbessern',ru:'Улучшить текст'},
+   ttl:{de:'Ihren deutschen Text perfektionieren',ru:'Сделать ваш немецкий текст идеальным'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Korrigiere meinen deutschen Text und erkläre die Fehler kurz, damit ich dazulerne: [Ihr Text]"</div><div class="hl">ChatGPT korrigiert Grammatik und Stil – und erklärt warum. Ihr Deutsch wird mit jeder Nutzung besser!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Исправь мой немецкий текст и кратко объясни ошибки, чтобы я учился: [ваш текст]»</div><div class="hl">ChatGPT исправляет грамматику и стиль — и объясняет почему. Ваш немецкий улучшается с каждым использованием!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Kann man ChatGPT auf Russisch fragen und die Antwort auf Deutsch bekommen?',ru:'Можно ли спрашивать ChatGPT по-русски и получать ответ на немецком?'},
+   os:{de:['Nein, nur Englisch-Deutsch','Ja – ChatGPT versteht Russisch und antwortet auf Deutsch','Nur mit Bezahlversion','Nur kurze Texte'],
+       ru:['Нет, только с английского','Да — ChatGPT понимает русский и отвечает на немецком','Только в платной версии','Только короткие тексты']},
+   a:1,h:{de:'ChatGPT versteht Russisch ausgezeichnet und kann in jeder gewünschten Sprache antworten.',ru:'ChatGPT отлично понимает русский и может отвечать на любом желаемом языке.'}}
+ ]
+},
+
+/* ═══ MOD 1 ═══ */
+{m:1,ic:'✏️',t:{de:'Die Formel für perfekte Prompts',ru:'Формула идеального промпта'},d:'9 Min',
+ sl:[
+  {vis:'em:🔮',bg:'#fff7ed,#ffedd5',
+   lb:{de:'Das Prinzip',ru:'Принцип'},
+   ttl:{de:'ChatGPT liest keine Gedanken',ru:'ChatGPT не читает мысли'},
+   tx:{de:`Je genauer Ihre Anfrage, desto besser die Antwort. Das nennt man einen „Prompt".<div class="gb"><div class="gbc b"><div class="gbc-l">❌ Schlecht</div>„Brief schreiben"</div><div class="gbc g"><div class="gbc-l">✅ Gut</div>„Schreibe einen höflichen Widerspruch auf Deutsch an das Jobcenter. Meine Leistungen wurden ohne Begründung um 50 € gekürzt."</div></div>`,
+       ru:`Чем точнее ваш запрос, тем лучше ответ. Это называется «промпт».<div class="gb"><div class="gbc b"><div class="gbc-l">❌ Плохо</div>«Написать письмо»</div><div class="gbc g"><div class="gbc-l">✅ Хорошо</div>«Напиши вежливое возражение на немецком в Jobcenter. Мои выплаты урезали на 50 € без объяснений.»</div></div>`}},
+  {vis:'steps:👤,Wer Sie sind:+:📋,Was Sie brauchen:+:🎯,Kontext',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Die 3-Teile-Formel',ru:'Формула из 3 частей'},
+   ttl:{de:'So bauen Sie einen perfekten Prompt',ru:'Как строить идеальный промпт'},
+   tx:{de:`<div class="hl">🙋 <strong>Wer Sie sind:</strong> „Ich bin Arbeitnehmer in Deutschland", „Ich bin Rentner"<br><br>📋 <strong>Was Sie brauchen:</strong> „Schreib einen Brief", „Erkläre", „Übersetze"<br><br>🎯 <strong>Kontext:</strong> „An das Jobcenter Berlin", „Auf Deutsch", „In Amtssprache", „Maximal 1 Seite"</div>`,
+       ru:`<div class="hl">🙋 <strong>Кто вы:</strong> «Я работник в Германии», «Я пенсионер»<br><br>📋 <strong>Что нужно:</strong> «Напиши письмо», «Объясни», «Переведи»<br><br>🎯 <strong>Контекст:</strong> «В Jobcenter Берлин», «На немецком», «Официальным языком», «Максимум 1 страница»</div>`}},
+  {vis:'em:✨',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Zauberwörter',ru:'Волшебные слова'},
+   ttl:{de:'5 Wörter, die jeden Prompt besser machen',ru:'5 слов, которые улучшают любой промпт'},
+   tx:{de:`<div class="hl">✨ <strong>„Auf Deutsch"</strong> – immer angeben!<br>✨ <strong>„In einfachen Worten"</strong> – kein Juristendeutsch<br>✨ <strong>„Schritt für Schritt"</strong> – klare Anleitung<br>✨ <strong>„Formell / höflich"</strong> – für Behördenbriefe<br>✨ <strong>„Gib ein Beispiel"</strong> – macht alles konkreter</div>`,
+       ru:`<div class="hl">✨ <strong>«Auf Deutsch»</strong> — всегда указывайте!<br>✨ <strong>«In einfachen Worten»</strong> — без юридического немецкого<br>✨ <strong>«Schritt für Schritt»</strong> — чёткая инструкция<br>✨ <strong>«Formell / höflich»</strong> — для официальных писем<br>✨ <strong>«Gib ein Beispiel»</strong> — делает всё конкретнее</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was macht einen guten Prompt aus?',ru:'Что делает промпт хорошим?'},
+   os:{de:['Ein einzelnes Wort','Wer Sie sind + was Sie brauchen + Kontext und Format','So lang wie möglich','Nur auf Englisch'],
+       ru:['Одно слово','Кто вы + что нужно + контекст и формат','Чем длиннее тем лучше','Только на английском']},
+   a:1,h:{de:'Ein guter Prompt enthält: wer Sie sind, was Sie brauchen und den Kontext.',ru:'Хороший промпт: кто вы, что нужно и контекст.'}},
+  {q:{de:'Welches Wort sollte bei Behördenbriefen immer dabei sein?',ru:'Какое слово всегда должно быть в промпте для официальных писем?'},
+   os:{de:['„Bitte"','„Auf Deutsch" und „formell"','„Schnell"','„ChatGPT"'],
+       ru:['«Пожалуйста»','«Auf Deutsch» и «formell»','«Schnell»','«ChatGPT»']},
+   a:1,h:{de:'„Auf Deutsch" und „formell" sorgen für korrekte Amtssprache.',ru:'«Auf Deutsch» и «formell» обеспечивают правильный официальный язык.'}}
+ ]
+},
+
+{m:1,ic:'💼',t:{de:'Prompts für Bewerbung & Deutsch verbessern',ru:'Промпты для работы и улучшения немецкого'},d:'10 Min',
+ sl:[
+  {vis:'em:💼',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Bewerbung',ru:'Заявка на работу'},
+   ttl:{de:'ChatGPT als Bewerbungs-Coach',ru:'ChatGPT как карьерный коуч'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt – Anschreiben</div>„Schreibe ein professionelles Anschreiben auf Deutsch für eine Stelle als [BERUFSBEZEICHNUNG]. Ich habe [X] Jahre Erfahrung, bin zuverlässig und teamfähig. Ton: professionell, ohne Übertreibungen."</div><div class="hl">Ergebnis: Ein fertig formatiertes Anschreiben, das dem deutschen Standard entspricht!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт — Anschreiben</div>«Напиши профессиональное Anschreiben на немецком для вакансии [ДОЛЖНОСТЬ]. У меня [X] лет опыта, я надёжный и командный. Тон: профессиональный, без преувеличений.»</div><div class="hl">Результат: готово отформатированное Anschreiben, соответствующее немецкому стандарту!</div>`}},
+  {vis:'em:📜',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Arbeitszeugnis-Code',ru:'Код Arbeitszeugnis'},
+   ttl:{de:'Den versteckten Code im Arbeitszeugnis entschlüsseln',ru:'Расшифровать скрытый код Arbeitszeugnis'},
+   tx:{de:`Das Arbeitszeugnis hat eine versteckte Bewertungssprache in Deutschland:<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„In meinem Arbeitszeugnis steht: 'Er war stets bemüht, den Anforderungen gerecht zu werden.' Was bedeutet das wirklich?"</div><div class="hl o">⚠️ Antwort: „Stets bemüht" ist tatsächlich eine schlechte Note! ChatGPT entschlüsselt das für Sie.</div>`,
+       ru:`В немецком Arbeitszeugnis есть скрытый язык оценок:<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«В моём Arbeitszeugnis написано: "Er war stets bemüht, den Anforderungen gerecht zu werden." Что это реально значит?»</div><div class="hl o">⚠️ Ответ: «Stets bemüht» — это фактически плохая оценка! ChatGPT расшифрует это для вас.</div>`}},
+  {vis:'em:🗣️',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Deutsch lernen',ru:'Учить немецкий'},
+   ttl:{de:'ChatGPT als persönlicher Sprachcoach',ru:'ChatGPT как личный языковой тренер'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt – Text korrigieren</div>„Korrigiere meinen deutschen Text und erkläre die Fehler, damit ich lerne: [Ihr Text]"</div><div class="ex de"><div class="xl">🇩🇪 Prompt – Gespräch üben</div>„Ich möchte ein Vorstellungsgespräch auf Deutsch üben. Stelle mir typische Fragen und korrigiere meine Antworten."</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт — исправить текст</div>«Исправь мой немецкий текст и объясни ошибки, чтобы я учился: [ваш текст]»</div><div class="ex de"><div class="xl">🇩🇪 Промпт — тренировка разговора</div>«Я хочу потренировать собеседование на немецком. Задай мне типичные вопросы и исправь мои ответы.»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was bedeutet „stets bemüht" in einem deutschen Arbeitszeugnis?',ru:'Что значит "stets bemüht" в немецком Arbeitszeugnis?'},
+   os:{de:['Sehr gute Bewertung','Eher schlechte Bewertung – er hat es versucht, aber nicht immer geschafft','Neutrale Aussage','Das beste Zitat'],
+       ru:['Очень хорошая оценка','Скорее плохая — старался, но не всегда справлялся','Нейтральное высказывание','Лучшая цитата']},
+   a:1,h:{de:'"Stets bemüht" ist im Zeugnis-Code eine negative Formulierung.',ru:'"Stets bemüht" в коде Zeugnis — негативная формулировка.'}}
+ ]
+},
+
+{m:1,ic:'🎯',t:{de:'10 sofort nutzbare Prompts für den Alltag',ru:'10 промптов для немедленного использования'},d:'11 Min',
+ sl:[
+  {vis:'em:📋',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Prompts 1–5',ru:'Промпты 1–5'},
+   ttl:{de:'Für Behörden und Dokumente',ru:'Для ведомств и документов'},
+   tx:{de:`<div class="hl">1️⃣ „Schreib einen Widerspruch auf Deutsch an das Jobcenter. Situation: [...]"<br>2️⃣ „Erkläre was 'Werbungskosten' sind – einfach, auf Deutsch"<br>3️⃣ „Übersetze diesen Brief von der Krankenkasse: [Text]"<br>4️⃣ „Erkläre diese Mietvertragsklausel: [Text]"<br>5️⃣ „Hilf mir, einen Antrag auf Wohngeld vorzubereiten"</div>`,
+       ru:`<div class="hl">1️⃣ «Напиши возражение на немецком в Jobcenter. Ситуация: [...]»<br>2️⃣ «Объясни что такое "Werbungskosten" — просто, на немецком»<br>3️⃣ «Переведи это письмо от Krankenkasse: [текст]»<br>4️⃣ «Объясни этот пункт договора аренды: [текст]»<br>5️⃣ «Помоги подготовить заявление на Wohngeld»</div>`}},
+  {vis:'em:✅',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Prompts 6–10',ru:'Промпты 6–10'},
+   ttl:{de:'Für Arbeit, Sprache und Alltag',ru:'Для работы, языка и быта'},
+   tx:{de:`<div class="hl">6️⃣ „Schreib ein Anschreiben auf Deutsch für [Stelle]"<br>7️⃣ „Korrigiere meinen deutschen Text: [Text]"<br>8️⃣ „Wie antworte ich höflich auf Deutsch auf diesen Brief?"<br>9️⃣ „Erkläre meine Rechte als Mieter in Deutschland einfach"<br>🔟 „Gib mir 5 Sätze für ein deutsches Vorstellungsgespräch"</div>`,
+       ru:`<div class="hl">6️⃣ «Напиши Anschreiben на немецком для [вакансия]»<br>7️⃣ «Исправь мой немецкий текст: [текст]»<br>8️⃣ «Как вежливо ответить на немецком на это письмо?»<br>9️⃣ «Объясни мои права арендатора в Германии просто»<br>🔟 «Дай 5 фраз для немецкого собеседования»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wie beginnt man am besten einen Prompt für einen Behördenbrief?',ru:'Как лучше начать промпт для официального письма?'},
+   os:{de:['Mit „Hallo ChatGPT"','Mit der Beschreibung der Situation und dem gewünschten Ton (formell, höflich, bestimmt)','Mit dem Wort „Brief"','Mit dem Namen der Behörde'],
+       ru:['С «Привет ChatGPT»','С описанием ситуации и желаемым тоном (официальный, вежливый, настойчивый)','Со слова «Письмо»','С названием ведомства']},
+   a:1,h:{de:'Situation und Ton beschreiben gibt ChatGPT alles, was es für einen guten Brief braucht.',ru:'Описание ситуации и тона даёт ChatGPT всё необходимое для хорошего письма.'}}
+ ]
+},
+
+{m:1,ic:'🔁',t:{de:'Gespräche verfeinern & Ergebnisse verbessern',ru:'Уточнять разговоры и улучшать результаты'},d:'8 Min',
+ sl:[
+  {vis:'em:🔄',bg:'#e0f2fe,#bae6fd',
+   lb:{de:'Verfeinern',ru:'Уточнение'},
+   ttl:{de:'Aus 80% ein perfektes Ergebnis machen',ru:'Из 80% сделать идеальный результат'},
+   tx:{de:`ChatGPT gibt beim ersten Versuch vielleicht 80% von dem, was Sie brauchen. Mit diesen Sätzen holen Sie die restlichen 20%:<div class="hl">„Mache den Brief kürzer – maximal eine Seite"<br>„Mache den Ton bestimmter"<br>„Füge eine Frist hinzu: Bitte bis zum [Datum] antworten"<br>„Füge einen Hinweis auf §§ SGB II ein"<br>„Überarbeite den letzten Absatz"</div>`,
+       ru:`С первого раза ChatGPT даёт примерно 80% нужного. Этими фразами получаете оставшиеся 20%:<div class="hl">«Сделай письмо короче — максимум одна страница»<br>«Сделай тон настойчивее»<br>«Добавь срок: пожалуйста ответьте до [дата]»<br>«Добавь ссылку на §§ SGB II»<br>«Переработай последний абзац»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was schreibt man, wenn das Ergebnis von ChatGPT nicht ganz passt?',ru:'Что написать, если результат ChatGPT не совсем подходит?'},
+   os:{de:['Neues Gespräch starten','Im gleichen Gespräch eine Verfeinerungs-Anweisung geben, z.B. „Mach kürzer"','ChatGPT neu installieren','Aufgeben'],
+       ru:['Начать новый разговор','В том же разговоре дать инструкцию по уточнению, напр. «Сделай короче»','Переустановить ChatGPT','Сдаться']},
+   a:1,h:{de:'Im gleichen Gespräch einfach sagen was geändert werden soll – ChatGPT passt es an.',ru:'В том же разговоре написать что изменить — ChatGPT адаптирует.'}}
+ ]
+},
+
+/* ═══ MOD 2 ═══ */
+{m:2,ic:'📋',t:{de:'Jobcenter: Anträge, Widersprüche & Bescheide',ru:'Jobcenter: заявления, возражения и уведомления'},d:'12 Min',
+ sl:[
+  {vis:'dc:📋,Bürgergeld,Antrag stellen:⚠️,Sanktionsbescheid,Widerspruch einlegen:❓,Bescheid,Verstehen & reagieren',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Das Jobcenter',ru:'Jobcenter'},
+   ttl:{de:'ChatGPT versteht das Jobcenter-System',ru:'ChatGPT понимает систему Jobcenter'},
+   tx:{de:`Das Jobcenter ist für viele ein Stress. ChatGPT hilft in jeder Situation:<div class="hl">📋 Bürgergeld-Antrag vorbereiten<br>⚠️ Sanktionsbescheid verstehen und widersprechen<br>❓ Unklare Briefe in verständliche Sprache übersetzen<br>📅 Fristen und Pflichten kennen</div>`,
+       ru:`Jobcenter для многих — источник стресса. ChatGPT помогает в любой ситуации:<div class="hl">📋 Подготовить заявление на Bürgergeld<br>⚠️ Понять санкционное уведомление и возразить<br>❓ Перевести непонятные письма на понятный язык<br>📅 Знать сроки и обязанности</div>`}},
+  {vis:'em:📄',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Widerspruch schreiben',ru:'Написать возражение'},
+   ttl:{de:'Widerspruch beim Jobcenter – in Minuten',ru:'Возражение в Jobcenter — за несколько минут'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Schreibe einen förmlichen Widerspruch auf Deutsch an das Jobcenter. Meine Bürgergeld-Leistungen wurden um 30% gekürzt, weil ich einen Termin verpasst habe. Ich war krank. Ton: höflich, aber bestimmt. Keine echten Namen oder Nummern."</div><div class="hl g">ChatGPT erstellt einen vollständigen Widerspruch. Sie ergänzen nur Ihre Daten!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Напиши официальное возражение на немецком в Jobcenter. Мои выплаты по Bürgergeld урезали на 30%, потому что я пропустил встречу. Я болел. Тон: вежливый, но настойчивый. Без реальных имён и номеров.»</div><div class="hl g">ChatGPT создаёт полное возражение. Вы только вписываете свои данные!</div>`}},
+  {vis:'em:❓',bg:'#e0f2fe,#bae6fd',
+   lb:{de:'Brief verstehen',ru:'Понять письмо'},
+   ttl:{de:'Unverständliche Jobcenter-Briefe entschlüsseln',ru:'Расшифровать непонятные письма Jobcenter'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Ich habe einen Brief vom Jobcenter bekommen. Erkläre mir in einfachen Worten auf Deutsch, was ich tun muss und welche Fristen es gibt. Hier der Text (ohne persönliche Daten): [Text]"</div><div class="hl">ChatGPT übersetzt Behördendeutsch in verständliche Sprache und sagt Ihnen genau, was zu tun ist!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Я получил письмо от Jobcenter. Объясни мне простыми словами на немецком, что нужно сделать и какие сроки. Вот текст (без личных данных): [текст]»</div><div class="hl">ChatGPT переводит официальный немецкий на понятный язык и говорит точно, что делать!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wie hilft ChatGPT beim Jobcenter-Widerspruch?',ru:'Как ChatGPT помогает с возражением в Jobcenter?'},
+   os:{de:['Es ruft beim Jobcenter an','Es erstellt einen Muster-Widerspruch auf Deutsch ohne echte Daten','Es ersetzt einen Anwalt','Es schickt den Brief selbst ab'],
+       ru:['Звонит в Jobcenter','Создаёт шаблон возражения на немецком без реальных данных','Заменяет адвоката','Сам отправляет письмо']},
+   a:1,h:{de:'ChatGPT erstellt einen Muster-Widerspruch – Sie ergänzen persönliche Daten und schicken ihn ab.',ru:'ChatGPT создаёт шаблон возражения — вы вписываете данные и отправляете.'}},
+  {q:{de:'Darf man echte Wohnadresse und Steuernummer in ChatGPT eingeben?',ru:'Можно ли вводить реальный адрес и налоговый номер в ChatGPT?'},
+   os:{de:['Ja, für bessere Ergebnisse','Nein – Muster ohne echte Daten erstellen, dann selbst ergänzen','Nur die Steuernummer ist OK','Nur wenn man eingeloggt ist'],
+       ru:['Да, для лучших результатов','Нет — создать шаблон без реальных данных, потом самому дополнить','Только налоговый номер ОК','Только если залогинен']},
+   a:1,h:{de:'Nie echte sensible Daten eingeben. Vorlage erstellen → Daten selbst eintragen.',ru:'Никогда не вводить реальные чувствительные данные. Создать шаблон → данные вписать самому.'}}
+ ]
+},
+
+{m:2,ic:'💰',t:{de:'Finanzamt: Steuererklärung & Begriffe verstehen',ru:'Finanzamt: налоговая декларация и понимание терминов'},d:'11 Min',
+ sl:[
+  {vis:'dc:💰,Finanzamt,Steuererklärung:📊,Werbungskosten,Was kann ich absetzen?:📄,Bescheid,Was bedeutet das?',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Das Finanzamt',ru:'Finanzamt'},
+   ttl:{de:'ChatGPT erklärt das Finanzamt-Deutsch',ru:'ChatGPT объясняет немецкий язык Finanzamt'},
+   tx:{de:`Das Finanzamt nutzt kompliziertes Amtsdeutsch. ChatGPT macht es verständlich:<div class="hl">💰 Steuerbegriffe einfach erklären<br>📊 Was kann ich als Arbeitnehmer absetzen?<br>📄 Einkommensteuerbescheid verstehen<br>🗓️ Steuererklärung vorbereiten</div>`,
+       ru:`Finanzamt использует сложный официальный немецкий. ChatGPT делает его понятным:<div class="hl">💰 Просто объяснить налоговые термины<br>📊 Что я могу вычесть как работник?<br>📄 Понять Einkommensteuerbescheid<br>🗓️ Подготовить налоговую декларацию</div>`}},
+  {vis:'em:📊',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Werbungskosten',ru:'Werbungskosten'},
+   ttl:{de:'Was Sie wirklich absetzen können',ru:'Что вы реально можете вычесть'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Ich bin Arbeitnehmer in Deutschland und fahre täglich 25 km zur Arbeit. Ich habe ein Arbeitszimmer zu Hause. Was kann ich in der Steuererklärung absetzen? Erkläre einfach."</div><div class="hl">ChatGPT gibt eine klare Liste aller möglichen Absetzbeträge!<br><br><span style="color:var(--orange)">⚠️ Für die finale Abgabe ELSTER oder Steuerberater nutzen.</span></div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Я работник в Германии, езжу каждый день 25 км до работы. Дома есть рабочий кабинет. Что я могу вычесть в налоговой декларации? Объясни просто.»</div><div class="hl">ChatGPT даёт чёткий список всех возможных вычетов!<br><br><span style="color:var(--orange)">⚠️ Для финальной подачи используйте ELSTER или Steuerberater.</span></div>`}},
+ ],
+ qz:[
+  {q:{de:'Wofür eignet sich ChatGPT beim Thema Finanzamt?',ru:'Для чего подходит ChatGPT в теме Finanzamt?'},
+   os:{de:['Für die offizielle Abgabe der Steuererklärung','Zum Verstehen von Begriffen, Vorbereitung und Orientierung','ChatGPT ersetzt den Steuerberater','Nur für Unternehmen'],
+       ru:['Для официальной подачи декларации','Для понимания терминов, подготовки и ориентации','ChatGPT заменяет налогового консультанта','Только для компаний']},
+   a:1,h:{de:'ChatGPT hilft beim Verstehen und Vorbereiten. Die finale Abgabe über ELSTER oder Steuerberater.',ru:'ChatGPT помогает понять и подготовиться. Финальная подача через ELSTER или Steuerberater.'}}
+ ]
+},
+
+{m:2,ic:'🏥',t:{de:'Krankenkasse, Rentenversicherung & Sozialamt',ru:'Krankenkasse, пенсионное страхование и Sozialamt'},d:'10 Min',
+ sl:[
+  {vis:'dc:🏥,Krankenkasse,Antrag & Widerspruch:🧓,Rentenversicherung,Punkte & Antrag:🤝,Sozialamt,Grundsicherung',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Drei Institutionen',ru:'Три организации'},
+   ttl:{de:'ChatGPT navigiert durch das Sozialsystem',ru:'ChatGPT ориентируется в социальной системе'},
+   tx:{de:`Diese drei Institutionen schicken viele komplizierte Briefe. ChatGPT hilft:<div class="hl">🏥 <strong>Krankenkasse:</strong> Leistungsanträge, Widersprüche, Befunde verstehen<br>🧓 <strong>Rentenversicherung:</strong> Rentenpunkte, Rentenantrag<br>🤝 <strong>Sozialamt:</strong> Grundsicherung, Wohngeld, Sozialhilfe</div>`,
+       ru:`Эти три организации присылают много сложных писем. ChatGPT помогает:<div class="hl">🏥 <strong>Krankenkasse:</strong> заявления, возражения, понять результаты анализов<br>🧓 <strong>Rentenversicherung:</strong> пенсионные баллы, заявление на пенсию<br>🤝 <strong>Sozialamt:</strong> Grundsicherung, Wohngeld, Sozialhilfe</div>`}},
+  {vis:'em:🏥',bg:'#e0f2fe,#bae6fd',
+   lb:{de:'Praktische Beispiele',ru:'Практические примеры'},
+   ttl:{de:'So helfen Sie sich selbst',ru:'Как помочь себе самостоятельно'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Brief verstehen</div>„Die Krankenkasse hat meinen Antrag auf [Hilfsmittel] abgelehnt. Erkläre mir meine Optionen und wie ich Widerspruch einlegen kann."</div><div class="ex de"><div class="xl">🇩🇪 Widerspruch schreiben</div>„Schreibe einen Widerspruch auf Deutsch an eine gesetzliche Krankenkasse. Mein Antrag auf [Physiotherapie] wurde ohne Begründung abgelehnt. Keine echten Daten."</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Понять письмо</div>«Krankenkasse отклонила мой запрос на [вспомогательное средство]. Объясни мои варианты и как подать возражение.»</div><div class="ex de"><div class="xl">🇩🇪 Написать возражение</div>«Напиши возражение на немецком в государственную страховую. Мой запрос на [физиотерапию] отклонён без объяснений. Без реальных данных.»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wie kann ChatGPT bei der Krankenkasse helfen?',ru:'Как ChatGPT может помочь с Krankenkasse?'},
+   os:{de:['Es kann sich als Arzt ausgeben','Briefe verstehen, Widersprüche formulieren, Anträge vorbereiten','Es überweist Leistungen','Es meldet Sie automatisch an'],
+       ru:['Притвориться врачом','Понять письма, формулировать возражения, готовить заявления','Перечисляет выплаты','Автоматически регистрирует']},
+   a:1,h:{de:'ChatGPT hilft beim Verstehen, Formulieren und Vorbereiten – nie beim offiziellen Einreichen.',ru:'ChatGPT помогает понять, формулировать и готовить — никогда официально подавать.'}}
+ ]
+},
+
+{m:2,ic:'🏠',t:{de:'Mietrecht: Verträge, Nebenkosten & Vermieter',ru:'Жильё: договор аренды, Nebenkosten и арендодатель'},d:'9 Min',
+ sl:[
+  {vis:'ltr:An: Vermieter GmbH:Sehr geehrte Damen...,ich zeige hiermit Mängel an,Mustermann',bg:'#f3e8ff,#e9d5ff',
+   lb:{de:'Mietrecht',ru:'Жилищное право'},
+   ttl:{de:'ChatGPT als Mietrecht-Erklärer',ru:'ChatGPT как объяснитель жилищного права'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt – Vertrag prüfen</div>„In meinem Mietvertrag steht: '[schwierige Klausel]'. Erkläre mir was das bedeutet und ob das in Deutschland legal ist."</div><div class="ex de"><div class="xl">🇩🇪 Prompt – Mängelanzeige</div>„Schreibe eine formelle Mängelanzeige auf Deutsch. Meine Heizung funktioniert seit 3 Tagen nicht. Ich bitte um sofortige Reparatur. Keine echten Daten."</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт — проверить договор</div>«В моём договоре аренды написано: "[сложный пункт]". Объясни что это значит и законно ли это в Германии.»</div><div class="ex de"><div class="xl">🇩🇪 Промпт — Mängelanzeige</div>«Напиши официальную Mängelanzeige на немецком. Моё отопление не работает 3 дня. Прошу немедленного ремонта. Без реальных данных.»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wozu kann man ChatGPT beim Thema Wohnen nutzen?',ru:'Для чего можно использовать ChatGPT в теме жилья?'},
+   os:{de:['Nur um Wohnungen zu suchen','Mietvertrag erklären, Mängelanzeige schreiben, Rechte kennen','ChatGPT kennt kein Mietrecht','Um mit dem Vermieter zu verhandeln'],
+       ru:['Только искать квартиры','Объяснить договор аренды, написать Mängelanzeige, знать права','ChatGPT не знает жилищного права','Вести переговоры с арендодателем']},
+   a:1,h:{de:'ChatGPT erklärt Klauseln, hilft bei Mängelanzeigen und informiert über Mieterrechte.',ru:'ChatGPT объясняет пункты, помогает с Mängelanzeige и рассказывает о правах арендатора.'}}
+ ]
+},
+
+/* ═══ MOD 3 ═══ */
+{m:3,ic:'💼',t:{de:'Bewerbung & Arbeitsleben in Deutschland',ru:'Работа и трудовая жизнь в Германии'},d:'11 Min',
+ sl:[
+  {vis:'em:💼',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Karriere',ru:'Карьера'},
+   ttl:{de:'ChatGPT als Karriere-Coach für Deutschland',ru:'ChatGPT как карьерный коуч для Германии'},
+   tx:{de:`<div class="hl">📄 Professionelles Anschreiben auf Deutsch schreiben<br>📋 Lebenslauf-Formulierungen optimieren<br>🗣️ Auf Interview-Fragen auf Deutsch vorbereiten<br>📜 Arbeitszeugnis-Noten entschlüsseln<br>⚖️ Arbeitnehmerrechte (Kündigung, Urlaub) verstehen</div><div class="ex de"><div class="xl">🇩🇪 Prompt – Vorbereitung</div>„Ich bewerbe mich auf Deutsch als [Beruf]. Stelle mir 5 typische Vorstellungsgespräch-Fragen und erkläre, wie ich gut antworte."</div>`,
+       ru:`<div class="hl">📄 Написать профессиональное Anschreiben на немецком<br>📋 Оптимизировать формулировки резюме<br>🗣️ Подготовиться к вопросам собеседования на немецком<br>📜 Расшифровать оценки Arbeitszeugnis<br>⚖️ Понять права работника (увольнение, отпуск)</div><div class="ex de"><div class="xl">🇩🇪 Промпт — подготовка</div>«Я подаю заявку на немецком как [профессия]. Задай мне 5 типичных вопросов собеседования и объясни как хорошо ответить.»</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was kann ChatGPT für Ihre Bewerbung in Deutschland tun?',ru:'Что ChatGPT может сделать для вашей заявки на работу в Германии?'},
+   os:{de:['Nichts – das ist zu persönlich','Anschreiben schreiben, Deutsch korrigieren, Interview-Fragen üben','Nur den Lebenslauf formatieren','Nur auf Englisch helfen'],
+       ru:['Ничего — это слишком личное','Написать Anschreiben, исправить немецкий, потренировать вопросы интервью','Только форматировать резюме','Помочь только на английском']},
+   a:1,h:{de:'ChatGPT schreibt Anschreiben, verbessert Deutsch, simuliert Fragen – vollständiger Bewerbungs-Coach.',ru:'ChatGPT пишет Anschreiben, улучшает немецкий, симулирует вопросы — полноценный карьерный коуч.'}}
+ ]
+},
+
+{m:3,ic:'🏪',t:{de:'Selbstständig in Deutschland – Gewerbe & Steuern',ru:'Самозанятость в Германии — Gewerbe и налоги'},d:'11 Min',
+ sl:[
+  {vis:'dc:🏪,Gewerbe,Anmeldung & Start:💰,Steuern,Umsatzsteuer & Einkommensteuer:🧾,Rechnungen,Pflichtangaben',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Selbstständigkeit',ru:'Самозанятость'},
+   ttl:{de:'Selbstständig in Deutschland – ChatGPT erklärt',ru:'Самозанятость в Германии — ChatGPT объясняет'},
+   tx:{de:`<div class="hl">🏪 Gewerbe anmelden – was brauche ich?<br>💰 Kleinunternehmerregelung vs. Regelbesteuerung<br>🧾 Korrekte Rechnungen ausstellen<br>📊 Umsatzsteuer und Einkommensteuer für Selbstständige</div><div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Erkläre mir den Unterschied zwischen Kleinunternehmerregelung und Regelbesteuerung in Deutschland – einfach und auf Deutsch."</div>`,
+       ru:`<div class="hl">🏪 Зарегистрировать Gewerbe — что нужно?<br>💰 Kleinunternehmerregelung vs. стандартное налогообложение<br>🧾 Правильно выставлять счета<br>📊 Umsatzsteuer и подоходный налог для самозанятых</div><div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Объясни мне разницу между Kleinunternehmerregelung и стандартным налогообложением в Германии — просто и на немецком.»</div>`}},
+  {vis:'em:🧾',bg:'#e0f2fe,#bae6fd',
+   lb:{de:'Rechnungen',ru:'Счета'},
+   ttl:{de:'Korrekte Rechnung auf Deutsch erstellen',ru:'Правильный счёт на немецком'},
+   tx:{de:`<div class="ex de"><div class="xl">🇩🇪 Prompt</div>„Erkläre mir, welche Pflichtangaben eine Rechnung in Deutschland enthalten muss. Ich bin Kleinunternehmer. Erstelle ein Muster-Format."</div><div class="hl">ChatGPT erklärt alle Pflichtangaben und erstellt ein Muster ohne echte Daten – bereit zum Anpassen!</div>`,
+       ru:`<div class="ex de"><div class="xl">🇩🇪 Промпт</div>«Объясни мне, какие обязательные данные должен содержать счёт в Германии. Я Kleinunternehmer. Создай образец формата.»</div><div class="hl">ChatGPT объясняет все обязательные данные и создаёт образец без реальных данных — готово для адаптации!</div>`}},
+ ],
+ qz:[
+  {q:{de:'Was muss eine korrekte Rechnung in Deutschland beinhalten?',ru:'Что должен содержать правильный счёт в Германии?'},
+   os:{de:['Nur den Betrag','U.a.: Steuernummer, Rechnungsnummer, Leistungsdatum, Umsatzsteuer','Nur Name und Datum','Das weiß nur ein Steuerberater'],
+       ru:['Только сумму','В т.ч.: Steuernummer, номер счёта, дата услуги, НДС','Только имя и дату','Это знает только Steuerberater']},
+   a:1,h:{de:'Korrekte Rechnungen brauchen: Steuernummer, fortlaufende Nummer, Leistungsdatum, Umsatzsteuer-Ausweis.',ru:'Правильные счета нужны: Steuernummer, порядковый номер, дата услуги, указание НДС.'}}
+ ]
+},
+
+{m:3,ic:'🌐',t:{de:'Nützliche KI-Tools für den deutschen Alltag',ru:'Полезные ИИ-инструменты для немецкого быта'},d:'10 Min',
+ sl:[
+  {vis:'em:🧰',bg:'#e0e7ff,#c7d2fe',
+   lb:{de:'Ihre KI-Toolbox',ru:'Ваши ИИ-инструменты'},
+   ttl:{de:'Mehr als nur ChatGPT',ru:'Больше чем ChatGPT'},
+   tx:{de:`<div class="hl">🌍 <strong>DeepL</strong> (deepl.com) – bester Übersetzer für Deutsch, besser als Google<br>🧩 <strong>Claude</strong> (claude.ai) – ideal für lange Dokumente und Verträge<br>📄 <strong>ChatPDF</strong> – PDFs direkt befragen (Mietvertrag, Bescheide)<br>🎙️ <strong>DeepL Voice</strong> – gesprochene Sprache übersetzen</div>`,
+       ru:`<div class="hl">🌍 <strong>DeepL</strong> (deepl.com) — лучший переводчик для немецкого, лучше Google<br>🧩 <strong>Claude</strong> (claude.ai) — идеален для длинных документов и договоров<br>📄 <strong>ChatPDF</strong> — задавать вопросы напрямую по PDF (договор, уведомления)<br>🎙️ <strong>DeepL Voice</strong> — переводить устную речь</div>`}},
+  {vis:'em:🎓',bg:'#d1fae5,#a7f3d0',
+   lb:{de:'Kursabschluss!',ru:'Курс пройден!'},
+   ttl:{de:'🎓 Herzlichen Glückwunsch!',ru:'🎓 Поздравляем!'},
+   tx:{de:`<div class="hl g">✅ Sie wissen, was ChatGPT ist und wie man es sicher nutzt<br><br>✅ Sie schreiben Prompts, die wirklich funktionieren<br><br>✅ Sie bewältigen Jobcenter, Finanzamt & Krankenkasse mit KI<br><br>✅ Sie nutzen KI für Arbeit, Business und Alltag in Deutschland<br><br>🚀 <strong>Üben Sie täglich – jeder Brief ist eine Chance, besser zu werden!</strong></div>`,
+       ru:`<div class="hl g">✅ Вы знаете что такое ChatGPT и как безопасно его использовать<br><br>✅ Пишете промпты, которые действительно работают<br><br>✅ Справляетесь с Jobcenter, Finanzamt и Krankenkasse с ИИ<br><br>✅ Используете ИИ для работы, бизнеса и жизни в Германии<br><br>🚀 <strong>Практикуйтесь ежедневно — каждое письмо — шанс стать лучше!</strong></div>`}},
+ ],
+ qz:[
+  {q:{de:'Welches Tool ist besser als Google Translate für Deutsch-Übersetzungen?',ru:'Какой инструмент лучше Google Translate для переводов на немецкий?'},
+   os:{de:['Bing Übersetzer','DeepL – qualitativ hochwertiger, besonders für Deutsch','ChatGPT kann nicht übersetzen','Alle sind gleich gut'],
+       ru:['Bing Переводчик','DeepL — более высокое качество, особенно для немецкого','ChatGPT не умеет переводить','Все одинаково хороши']},
+   a:1,h:{de:'DeepL ist besonders gut für Deutsch-Übersetzungen und versteht Kontext besser als Google Translate.',ru:'DeepL особенно хорош для переводов на немецкий и лучше понимает контекст, чем Google Translate.'}}
+ ]
+},
+
+{m:3,ic:'🏁',t:{de:'KI sicher einsetzen – Stärken & Grenzen',ru:'Безопасное использование ИИ — возможности и границы'},d:'8 Min',
+ sl:[
+  {vis:'em:⚡',bg:'#fef9c3,#fef3c7',
+   lb:{de:'Stärken',ru:'Возможности'},
+   ttl:{de:'Was KI wirklich gut kann',ru:'В чём ИИ действительно силён'},
+   tx:{de:`<div class="hl g">✅ Behördenbriefe schreiben & verbessern<br>✅ Behördendeutsch erklären<br>✅ Auf Russisch fragen, auf Deutsch erhalten<br>✅ Bewerbungsunterlagen perfektionieren<br>✅ Alltagsfragen blitzschnell beantworten<br>✅ Deutsch verbessern als Sprachcoach</div>`,
+       ru:`<div class="hl g">✅ Писать и улучшать письма в ведомства<br>✅ Объяснять официальный немецкий<br>✅ Спрашивать по-русски — получать по-немецки<br>✅ Совершенствовать документы для заявки на работу<br>✅ Молниеносно отвечать на повседневные вопросы<br>✅ Улучшать немецкий как языковой тренер</div>`}},
+  {vis:'em:⚠️',bg:'#fef2f2,#fecaca',
+   lb:{de:'Grenzen',ru:'Границы'},
+   ttl:{de:'Wo KI nicht ausreicht',ru:'Где ИИ недостаточно'},
+   tx:{de:`<div class="hl r">⚠️ Rechtliche Beratung → Anwalt oder Sozialberatung<br>⚠️ Medizinische Diagnosen → Arzt<br>⚠️ Finale Steuererklärung → ELSTER oder Steuerberater<br>⚠️ Wichtige Dokumente unterschreiben → Erst prüfen lassen</div><div class="hl">ChatGPT ist Ihr Assistent – für Orientierung, Vorbereitung und Verstehen. Für finale Entscheidungen: Experten konsultieren.</div>`,
+       ru:`<div class="hl r">⚠️ Юридическая консультация → адвокат или Sozialberatung<br>⚠️ Медицинские диагнозы → врач<br>⚠️ Финальная налоговая декларация → ELSTER или Steuerberater<br>⚠️ Подписывать важные документы → сначала проверить</div><div class="hl">ChatGPT — ваш помощник для ориентации, подготовки и понимания. Для окончательных решений — консультируйтесь с экспертами.</div>`}},
+ ],
+ qz:[
+  {q:{de:'Wofür reicht ChatGPT allein NICHT aus?',ru:'Для чего одного ChatGPT НЕДОСТАТОЧНО?'},
+   os:{de:['Für Briefe schreiben','Für Behördendeutsch erklären','Für offizielle rechtliche oder medizinische Beratung','Für Übersetzungen'],
+       ru:['Для написания писем','Для объяснения официального немецкого','Для официальной юридической или медицинской консультации','Для переводов']},
+   a:2,h:{de:'Für rechtliche oder medizinische Entscheidungen braucht man echte Fachleute. ChatGPT zur Orientierung.',ru:'Для юридических или медицинских решений нужны настоящие специалисты. ChatGPT для ориентации.'}}
+ ]
+},
+]; // end LES
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+const MC = ['#0071e3','#ff9500','#34c759','#af52de'];
+let S = {w:{},q:{},b:{},p:{name:'',city:'',goal:''},ava:''};
+let cL=0, cSl=0, goB=false, qI=0, qD=false;
+function save(){try{localStorage.setItem('ss4',JSON.stringify(S));}catch(e){}}
+function load(){try{const s=localStorage.getItem('ss4');if(s)S=JSON.parse(s);}catch(e){}}
+
+// ══════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════
+let lang = localStorage.getItem('ss_lang')||'de';
+
+function sL(l){
+  lang=l; localStorage.setItem('ss_lang',l);
+  document.documentElement.lang=l;
+  document.getElementById('bde').classList.toggle('on',l==='de');
+  document.getElementById('bru').classList.toggle('on',l==='ru');
+  renderUI();
+  renderHome();
+  if(document.getElementById('player').classList.contains('on')){
+    buildSlides(); renderSlide();
+  }
+  if(document.getElementById('pg-prog').classList.contains('on')) renderProg();
+  if(document.getElementById('pg-prof').classList.contains('on')) renderProf();
+}
+
+function ui(){ return UI[lang]; }
+function t(obj){ return (obj&&typeof obj==='object') ? obj[lang]||obj.de : String(obj||''); }
+
+function renderUI(){
+  const u=ui();
+  const tabs=document.querySelectorAll('.ntab');
+  u.nt.forEach((txt,i)=>{if(tabs[i]) tabs[i].textContent=txt;});
+  document.getElementById('hh1').innerHTML=u.hh1;
+  document.getElementById('hh2').textContent=u.hh2;
+  document.getElementById('sc-done').textContent=u.stats[0];
+  document.getElementById('sc-tot').textContent=u.stats[1];
+  document.getElementById('sc-qz').textContent=u.stats[2];
+  document.getElementById('op-lbl').textContent=u.prog;
+  document.getElementById('sec-mods-l').textContent=u.mods;
+  document.getElementById('btn-back').textContent=u.back;
+  document.getElementById('btnprev').textContent=u.prev;
+  document.getElementById('db-h').textContent=u.db[0];
+  document.getElementById('db-p').textContent=u.db[1];
+  document.getElementById('db-quiz').textContent=u.db[2];
+  document.getElementById('db-back').textContent=u.db[3];
+  document.getElementById('prg-h1').textContent=u.prg[0];
+  document.getElementById('prg-h2').textContent=u.prg[1];
+  document.getElementById('fl-name').textContent=u.prof[2];
+  document.getElementById('fl-city').textContent=u.prof[3];
+  document.getElementById('fl-goal').textContent=u.prof[4];
+  document.getElementById('sbtn').textContent=u.prof[5];
+  document.getElementById('ach-h').textContent=u.ach;
+}
+
+// ══════════════════════════════════════
+// NAV / PAGES
+// ══════════════════════════════════════
+function goP(id, btn){
+  if(id==='home'&&document.getElementById('player').classList.contains('on')) return;
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  if(btn) btn.classList.add('on');
+  if(id==='prog') renderProg();
+  if(id==='prof') renderProf();
+}
+
+// ══════════════════════════════════════
+// STATS
+// ══════════════════════════════════════
+function updStats(){
+  const w=Object.keys(S.w).length, tot=LES.length;
+  const pct=Math.round(w/tot*100), q=Object.keys(S.q).length;
+  document.getElementById('sv-w').textContent=w;
+  document.getElementById('sv-q').textContent=q;
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('ppct').textContent=pct+'%';
+  chkBadges(w,q,tot);
+}
+
+// ══════════════════════════════════════
+// HOME
+// ══════════════════════════════════════
+function renderHome(){
+  const mm=ui().mmod;
+  const c=document.getElementById('mod-list');
+  c.innerHTML='';
+  mm.forEach((m,mi)=>{
+    const idxs=LES.map((l,i)=>l.m===mi?i:-1).filter(i=>i>=0);
+    const w=idxs.filter(i=>S.w[i]).length;
+    const pct=Math.round(w/idxs.length*100);
+    const done=w===idxs.length;
+    const card=document.createElement('div');
+    card.className='mc'+(done?' done':'');
+    card.id=`mc-${mi}`;
+    const lh=idxs.map(gi=>{
+      const l=LES[gi];
+      return`<div class="lr${S.w[gi]?' done':''}" onclick="openLesson(${gi})">
+        <div class="lchk">✓</div><div class="lic">${l.ic}</div>
+        <div class="lt2">${t(l.t)}</div><div class="ld">${l.d}</div>
+        <div class="lpb">▶</div>
+      </div>`;
+    }).join('');
+    card.innerHTML=`
+      <div class="mch" onclick="togM(${mi})">
+        <div class="mn" style="background:${MC[mi]}18;color:${MC[mi]}">${mi+1}</div>
+        <div class="mc-info">
+          <div class="mc-tag" style="color:${MC[mi]}">${m.tag}${done?' · ✅':''}</div>
+          <div class="mc-t">${m.em} ${m.ttl}</div>
+          <div class="mc-mini"><div class="mb2"><div class="mf2" style="width:${pct}%;background:${MC[mi]}"></div></div><div class="mt2">${w}/${idxs.length}</div></div>
+        </div>
+        <div class="mc-chev">▾</div>
+      </div>
+      <div class="mc-body" id="mb-${mi}"><div class="mc-bi">${lh}</div></div>`;
+    c.appendChild(card);
+  });
+}
+
+function togM(mi){
+  const b=document.getElementById(`mb-${mi}`);
+  const c=document.getElementById(`mc-${mi}`);
+  const o=b.classList.contains('open');
+  document.querySelectorAll('.mc-body').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.mc').forEach(x=>x.classList.remove('open'));
+  if(!o){b.classList.add('open');c.classList.add('open');}
+}
+
+// ══════════════════════════════════════
+// PLAYER
+// ══════════════════════════════════════
+function openLesson(gi){
+  cL=gi; cSl=0; goB=false;
+  const l=LES[gi]; const mi=l.m;
+  const mm=ui().mmod;
+  document.getElementById('pt-mod').style.color=MC[mi];
+  document.getElementById('pt-mod').textContent=mm[mi].tag;
+  document.getElementById('pt-ttl').textContent=t(l.t);
+  document.getElementById('pt-dur').textContent='⏱ '+l.d;
+  buildSlides();
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('player').classList.add('on');
+  document.getElementById('done-box').style.display='none';
+  document.getElementById('sctrl').style.display='flex';
+  window.scrollTo(0,0);
+  renderSlide();
+}
+
+function buildSlides(){
+  const sls=LES[cL].sl; const mi=LES[cL].m;
+  document.getElementById('sw').innerHTML=sls.map((s,i)=>{
+    const[g1,g2]=(s.bg||'#e5e5ea,#d1d1d6').split(',');
+    return`<div class="slide" id="sl-${i}">
+      <div class="sv" style="background:linear-gradient(135deg,${g1},${g2})">${renderVis(s.vis)}</div>
+      <div class="sb">
+        <div class="s-lb" style="color:${MC[mi]}">${t(s.lb)}</div>
+        <div class="s-ttl">${t(s.ttl)}</div>
+        <div class="s-tx">${t(s.tx)}</div>
+      </div>
+    </div>`;
+  }).join('');
+  buildDots();
+}
+
+function renderVis(v){
+  if(!v) return`<div class="vg"><div class="ve">📖</div></div>`;
+  if(v.startsWith('em:')) return`<div class="vg"><div class="ve">${v.slice(3)}</div></div>`;
+  if(v.startsWith('chat:')){
+    const p=v.slice(5).split(':');
+    return`<div class="vg v-chat">${p.map((x,i)=>`<div class="cb ${i%2===0?'u':'a'}">${x}</div>`).join('')}</div>`;
+  }
+  if(v.startsWith('steps:')){
+    const p=v.slice(6).split(':');
+    let h='<div class="vg v-stp">';
+    p.forEach(x=>{
+      if(x==='→'||x==='+') h+=`<div class="sa">${x}</div>`;
+      else{ const[ic,...r]=x.split(','); h+=`<div class="si2"><div class="si2-i">${ic}</div><div class="si2-l">${r.join(' ')}</div></div>`; }
+    });
+    return h+'</div>';
+  }
+  if(v.startsWith('cmp:')){
+    const items=v.slice(4).split(':');
+    let h='<div class="vg v-cmp">';
+    items.forEach(it=>{ const[ic,nm,sub]=it.split(','); h+=`<div class="cc"><div class="cc-i">${ic}</div><div class="cc-n">${nm}</div><div style="font-size:10px;color:#999">${sub||''}</div></div>`; });
+    return h+'</div>';
+  }
+  if(v.startsWith('ltr:')){
+    const p=v.slice(4).split(':');
+    return`<div class="vg v-ltr"><div class="lm"><div class="lm-f">${p[0]||''}</div><div>${(p[1]||'').replace(/,/g,'<br>')}</div><br><div>${p[2]||''}</div></div></div>`;
+  }
+  if(v.startsWith('dc:')){
+    const items=v.slice(3).split(':');
+    let h='<div class="vg v-dc">';
+    items.forEach(it=>{ const[ic,nm,sub]=it.split(','); h+=`<div class="dcard"><div class="dcard-ico">${ic}</div><div><div class="dcard-name">${nm}</div>${sub||''}</div></div>`; });
+    return h+'</div>';
+  }
+  return`<div class="vg"><div class="ve">📖</div></div>`;
+}
+
+function buildDots(){
+  const n=LES[cL].sl.length;
+  document.getElementById('dots').innerHTML=Array.from({length:n},(_,i)=>`<div class="dot" id="d-${i}" onclick="gSlide(${i})"></div>`).join('');
+}
+
+function renderSlide(){
+  const n=LES[cL].sl.length;
+  const u=ui();
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('on','bk'));
+  const sl=document.getElementById(`sl-${cSl}`);
+  if(sl){sl.classList.add('on'); if(goB) sl.classList.add('bk');}
+  document.querySelectorAll('.dot').forEach((d,i)=>{ d.className='dot'+(i<cSl?' done':i===cSl?' on':''); });
+  document.getElementById('spbf').style.width=((cSl+1)/n*100)+'%';
+  document.getElementById('btnprev').disabled=cSl===0;
+  document.getElementById('btnprev').textContent=u.prev;
+  const nb=document.getElementById('btnnext');
+  if(cSl===n-1){ nb.textContent=u.fin; nb.onclick=finLesson; }
+  else { nb.textContent=u.next; nb.onclick=nextS; }
+  goB=false;
+}
+
+function nextS(){ const n=LES[cL].sl.length; if(cSl<n-1){cSl++;goB=false;renderSlide();} }
+function prevS(){ if(cSl>0){cSl--;goB=true;renderSlide();} }
+function gSlide(i){ cSl=i;goB=false;renderSlide(); }
+
+function finLesson(){
+  S.w[cL]=true; save(); renderHome(); updStats();
+  document.getElementById('sctrl').style.display='none';
+  document.getElementById('done-box').style.display='block';
+  showToast(ui().toast.done);
+}
+
+function backHome(){
+  document.getElementById('player').classList.remove('on');
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('pg-home').classList.add('on');
+  document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('on',i===0));
+}
+
+// ══════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════
+function openQuiz(){ qI=0; qD=false; renderQ(); document.getElementById('qov').classList.add('on'); }
+function closeQ(){ document.getElementById('qov').classList.remove('on'); }
+function oclose(e){ if(e.target.id==='qov') closeQ(); }
+
+function renderQ(){
+  const qs=LES[cL].qz; const q=qs[qI]; const mi=LES[cL].m;
+  const u=ui(); const mm=u.mmod;
+  document.getElementById('qmod').textContent=u.qlab(mm[mi].tag,qI+1,qs.length);
+  document.getElementById('qst').textContent=`${qI+1} / ${qs.length}`;
+  document.getElementById('qdts').innerHTML=qs.map((_,i)=>`<div class="qdot${i<qI?' done':i===qI?' on':''}"></div>`).join('');
+  document.getElementById('qq').textContent=t(q.q);
+  const opts=t(q.os);
+  document.getElementById('qos').innerHTML=(Array.isArray(opts)?opts:[]).map((o,i)=>`<button class="qo" onclick="ansQ(${i})">${o}</button>`).join('');
+  document.getElementById('qfb').className='qfb';
+  document.getElementById('qfb').textContent='';
+  const nxt=document.getElementById('qnxt');
+  nxt.className='qnext';
+  nxt.textContent=qI<qs.length-1?u.qnext:u.qdone;
+  qD=false;
+}
+
+function ansQ(idx){
+  if(qD) return; qD=true;
+  const q=LES[cL].qz[qI]; const u=ui();
+  document.querySelectorAll('.qo').forEach((o,i)=>{ o.disabled=true; if(i===q.a) o.classList.add('ok'); else if(i===idx) o.classList.add('no'); });
+  const fb=document.getElementById('qfb');
+  fb.textContent=(idx===q.a?u.ok:u.no)+t(q.h);
+  fb.className='qfb '+(idx===q.a?'ok':'no')+' on';
+  document.getElementById('qnxt').className='qnext on';
+}
+
+function nextQ(){
+  const qs=LES[cL].qz;
+  if(qI<qs.length-1){ qI++; renderQ(); }
+  else { S.q[cL]=true; save(); updStats(); closeQ(); showToast(ui().toast.quiz); renderHome(); }
+}
+
+// ══════════════════════════════════════
+// PROGRESS
+// ══════════════════════════════════════
+function renderProg(){
+  const mm=ui().mmod;
+  document.getElementById('prg-mods').innerHTML=mm.map((m,mi)=>{
+    const idxs=LES.map((l,i)=>l.m===mi?i:-1).filter(i=>i>=0);
+    const w=idxs.filter(i=>S.w[i]).length;
+    const pct=Math.round(w/idxs.length*100);
+    return`<div class="mpr">
+      <div class="mpr-n" style="background:${MC[mi]}18;color:${MC[mi]}">${mi+1}</div>
+      <div class="mpr-info"><div class="mpr-nm">${m.em} ${m.tag}</div><div class="mpr-b"><div class="mpr-f" style="width:${pct}%;background:${MC[mi]}"></div></div></div>
+      <div class="mpr-pct" style="color:${MC[mi]}">${pct}%</div>
+    </div>`;
+  }).join('');
+  document.getElementById('prg-les').innerHTML=LES.map((l,i)=>`
+    <div class="lmini${S.w[i]?' w':''}">
+      <span>${S.w[i]?'✅':'⬜'}</span>
+      <span><strong style="color:${MC[l.m]};font-size:11px">${ui().mmod[l.m].tag}</strong> · ${l.ic} ${t(l.t)}</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════
+// PROFILE
+// ══════════════════════════════════════
+function renderProf(){
+  const u=ui();
+  document.getElementById('f-name').value=S.p.name||'';
+  document.getElementById('f-city').value=S.p.city||'';
+  document.getElementById('f-goal').value=S.p.goal||'';
+  document.getElementById('pn-d').textContent=S.p.name||u.prof[0];
+  document.getElementById('ps-d').textContent=S.p.city||u.prof[1];
+  updAva(); renderBadges();
+}
+function liveN(){ document.getElementById('pn-d').textContent=document.getElementById('f-name').value.trim()||ui().prof[0]; }
+function updAva(){
+  const nav=document.getElementById('nav-ava'), pa=document.getElementById('pav');
+  if(S.ava){ nav.innerHTML=`<img src="${S.ava}">`; pa.innerHTML=`<img src="${S.ava}">`; }
+  else { nav.textContent='😊'; pa.textContent='😊'; }
+}
+function hdlAv(e){
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader(); r.onload=ev=>{S.ava=ev.target.result;save();updAva();}; r.readAsDataURL(f);
+}
+function saveP(){
+  S.p.name=document.getElementById('f-name').value.trim();
+  S.p.city=document.getElementById('f-city').value.trim();
+  S.p.goal=document.getElementById('f-goal').value.trim();
+  save(); renderProf(); showToast(ui().toast.saved);
+}
+function renderBadges(){
+  const bd=ui().badges;
+  document.getElementById('bgs').innerHTML=bd.map(b=>`
+    <div class="bg${S.b[b.k]?' e':''}">
+      <div class="bi">${b.ic}</div>
+      <div class="bn2">${b.nm}</div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════
+// BADGES
+// ══════════════════════════════════════
+function chkBadges(w,q,tot){
+  let ch=false;
+  function earn(k,msg){ if(!S.b[k]){S.b[k]=true;ch=true;setTimeout(()=>showToast('🏅 '+msg),400);} }
+  if(w>=1) earn('first',ui().badges[0].nm+'!');
+  [0,1,2,3].forEach(mi=>{ const idxs=LES.map((l,i)=>l.m===mi?i:-1).filter(i=>i>=0); if(idxs.every(i=>S.w[i])) earn('m'+mi,ui().mmod[mi].tag+'!'); });
+  if(q>=1) earn('fq',ui().badges[5].nm+'!');
+  if(q>=LES.length) earn('aq',ui().badges[6].nm+'!');
+  if(w>=tot) earn('cd','🎓 '+ui().badges[7].nm+'!');
+  if(ch){ save(); renderBadges(); }
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+let tT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(tT); tT=setTimeout(()=>t.classList.remove('on'),2800);
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+load();
+sL(lang);
+updStats();
+togM(0);
+</script>
+</body>
+</html>
