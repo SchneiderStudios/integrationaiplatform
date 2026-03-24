@@ -801,7 +801,6 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
 
 // temporary client-side access (to be replaced by real payment)
-const DEV_MODE = false; // set to true to show test helper bar
 
 function openCourseLink(e){
   e.preventDefault();
@@ -845,8 +844,5 @@ setL(lang);
 
 <!-- TEST HELPER BAR (remove before production) -->
 
-<script>
-
-</script>
 </body>
 </html>
