@@ -644,6 +644,7 @@ async function submitSignup(){
     if(!res.ok) throw new Error(data.error||'server error');
     // Grant access after successful submission
     localStorage.setItem('access','true');
+    localStorage.setItem('user_email', email);
     closeSM();
     window.location.href = 'kurs.html';
   } catch(err) {
