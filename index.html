@@ -596,14 +596,6 @@ let lang = localStorage.getItem('ss_lang')||'de';
 // Replace with server-side session/token verification after payment integration.
 function hasAccess(){ return localStorage.getItem('access')==='true'; }
 
-  const bar=document.getElementById('test-bar');
-  if(bar) bar.style.display=DEV_MODE?'flex':'none';
-  const s=document.getElementById('tb-status');
-  if(s) s.innerHTML=hasAccess()
-    ?'<span style="color:#34c759">● Zugang aktiv / Доступ активен</span>'
-    :'<span style="color:#ff3b30">● Kein Zugang / Нет доступа</span>';
-}
-
 // ── SIGNUP MODAL ──
 function buyCourse(){
   if(hasAccess()){ window.location.href = 'kurs.html'; return; }
